@@ -14,13 +14,13 @@ Migración de la plataforma de "Gestión de Proyectos Educativos" desde HTML/CSS
 
 ## Características
 
-✨ **Funcionalidades principales:**
+ **Funcionalidades principales:**
 
-- ✅ Agregar nuevos proyectos
-- ✅ Visualizar lista de proyectos
-- ✅ Eliminar proyectos de la lista
-- ✅ Buscar proyectos en tiempo real
-- ✅ Interfaz responsive y moderna
+- Agregar nuevos proyectos
+-  Visualizar lista de proyectos
+-  Eliminar proyectos de la lista
+-  Buscar proyectos en tiempo real
+-  Interfaz responsive y moderna
 
 ## Requisitos Técnicos
 

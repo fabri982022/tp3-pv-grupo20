@@ -24,6 +24,13 @@ const proyectoService = (() => {
       });
     },
 
+    // Actualiza un proyecto por id
+    actualizarProyecto: (id, datos) => {
+      proyectos = proyectos.map(p => 
+        p.id === id ? { ...p, ...datos } : p
+      );
+    },
+
     // Elimina un proyecto por id
     eliminarProyecto: (id) => {
       proyectos = proyectos.filter(p => p.id !== id);

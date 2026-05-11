@@ -10,6 +10,6 @@ const Nav= ()=>{
        <li> <a href="#">PERFIL DEL USUARIO</a> </li>
      </ul>
    </nav>
- )
-}
+ );
+};
 export default Nav;

@@ -1,9 +1,9 @@
 
 //SE CREO PARA TESTEO
 import ListaProyectos from './components/ListaProyectos'
+import './css/proyectos.css'
 
 import './css/App.css'
-import './css/proyectos.css'
 
 function App() {
   return (
@@ -14,7 +14,6 @@ function App() {
 }
 
 export default App
-
 
 //DEFAULT
 /* import { useState } from 'react'

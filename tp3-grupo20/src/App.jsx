@@ -1,4 +1,23 @@
-import { useState } from 'react'
+
+//SE CREO PARA TESTEO
+import ListaProyectos from './components/ListaProyectos'
+
+import './css/App.css'
+import './css/proyectos.css'
+
+function App() {
+  return (
+    <>
+      <ListaProyectos />
+    </>
+  )
+}
+
+export default App
+
+
+//DEFAULT
+/* import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from './assets/vite.svg'
 import heroImg from './assets/hero.png'
@@ -120,3 +139,4 @@ function App() {
 }
 
 export default App
+ */

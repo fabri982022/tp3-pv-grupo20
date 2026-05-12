@@ -1,0 +1,177 @@
+.contenedor-proyectos {
+  padding: 2rem;
+}
+
+.buscador {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 1rem;
+
+  margin-bottom: 2.5rem;
+
+  text-align: center;
+}
+
+.buscador p {
+  color: #64748b;
+
+  font-size: 0.95rem;
+}
+
+.buscador input {
+  width: 100%;
+  max-width: 380px;
+
+  padding: 0.9rem 1rem;
+
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+
+  font-size: 1rem;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.buscador input:focus {
+  border-color: #7c3aed;
+
+  box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.15);
+}
+
+.agregar-proyecto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 1rem;
+
+  margin-bottom: 3rem;
+}
+
+.agregar-proyecto input,
+.agregar-proyecto select {
+  width: 100%;
+  max-width: 380px;
+
+  padding: 0.9rem 1rem;
+
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+
+  font-size: 1rem;
+
+  outline: none;
+}
+
+.agregar-proyecto input:focus,
+.agregar-proyecto select:focus {
+  border-color: #0f766e;
+
+  box-shadow: 0 0 0 4px rgba(15, 118, 110, 0.15);
+}
+
+.agregar-proyecto button {
+  width: 100%;
+  max-width: 380px;
+
+  padding: 1rem;
+
+  border: none;
+  border-radius: 14px;
+
+  background-color: #0f766e;
+
+  color: white;
+
+  font-size: 1rem;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.agregar-proyecto button:hover {
+  background-color: #115e59;
+
+  transform: scale(1.02);
+}
+
+.lista-proyectos {
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+
+  gap: 1.5rem;
+}
+
+.card-proyecto {
+  background-color: white;
+
+  padding: 1.5rem;
+
+  border-radius: 16px;
+
+  border: 1px solid #e2e8f0;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.card-proyecto:hover {
+  transform: translateY(-4px);
+
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.08);
+}
+
+.card-proyecto h2 {
+  margin-bottom: 1rem;
+
+  color: #312e81;
+}
+
+.card-proyecto p {
+  margin-bottom: 0.7rem;
+
+  color: #475569;
+}
+
+.card-proyecto button {
+  margin-top: 1rem;
+
+  width: 100%;
+
+  padding: 0.85rem 1rem;
+
+  border: none;
+  border-radius: 12px;
+
+  background-color: #dc2626;
+
+  color: white;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.card-proyecto button:hover {
+  background-color: #b91c1c;
+
+  transform: scale(1.02);
+}

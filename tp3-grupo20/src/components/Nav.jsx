@@ -1,12 +1,14 @@
 export default function Nav() {
   return (
-    <nav>
-      <ul>
-        <li><a href="#">INICIO</a></li>
-        <li><a href="#">EXPLORADOR DE PROYECTOS</a></li>
-        <li><a href="#">DETALLE DEL PROYECTO</a></li>
-        <li><a href="#">PERFIL DEL USUARIO</a></li>
-      </ul>
-    </nav>
+    <div className="header-text">
+      <h1>Plataforma de Gestión de Proyectos Educativos</h1>  
+      <nav>
+        <ul>
+          <li><a href="#">Inicio</a></li>
+          <li><a href="#">Mi Perfil</a></li>
+          <li><a href="#">Detalle de Proyecto</a></li>
+        </ul>
+      </nav>
+   </div> 
   );
 }

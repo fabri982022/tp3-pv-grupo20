@@ -1,8 +1,13 @@
+import logoInstitucional from '../assets/logo-fi-unju-institucional.png'
+import Nav from './Nav' 
+
 export default function Header() {
   return (
-    <header className="navbar">
-      <h1>Plataforma de Gestión de Proyectos Educativos - FI-UNJU</h1>
-      <p>Bienvenido usuario a la plataforma</p>
+    <header>
+      <div className="header-content">
+        <img src={logoInstitucional} alt="Logo Institucional FI - UNJu" className="logo"/>
+        <Nav/>
+      </div>  
     </header>
   );
 }

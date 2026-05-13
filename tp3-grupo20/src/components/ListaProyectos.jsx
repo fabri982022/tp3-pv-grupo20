@@ -85,67 +85,69 @@ const ListaProyectos = () => {
   }
 
   return (
-    <main className="contenedor-proyectos">
-      <section className="buscador">
-        <p>Total de proyectos: {proyectos.length}</p>
+    <main>
+      <h1 className="proyectos-disponibles">Listado de Proyectos</h1>
 
-        <h1>Listado de Proyectos</h1>
+      <h2 className="titulo-buscador">Buscador de Proyectos</h2>
 
-        <input
-          type="text"
-          placeholder="Buscar proyecto..."
-          value={busqueda}
-          onChange={manejarBusqueda}
-        />
-      </section>
+        <div className="buscador-group">
+          <input
+            type="text"
+            placeholder="Buscar proyecto..."
+            value={busqueda}
+            onChange={manejarBusqueda}
+          />
+        </div>  
 
-      <section className="agregar-proyecto">
-        <h2>Agregar Proyecto</h2>
+      <h2 className="titulo-buscador">Agregar Proyecto</h2>
+      
+        <div className="buscador-group">
+          <input
+            type="text"
+            name="título"
+            placeholder="Título"
+            value={nuevoProyecto.título}
+            onChange={manejarInput}
+          />
 
-        <input
-          type="text"
-          name="título"
-          placeholder="Título"
-          value={nuevoProyecto.título}
-          onChange={manejarInput}
-        />
+          <input
+            type="text"
+            name="categoría"
+            placeholder="Categoría"
+            value={nuevoProyecto.categoría}
+            onChange={manejarInput}
+          />
 
-        <input
-          type="text"
-          name="categoría"
-          placeholder="Categoría"
-          value={nuevoProyecto.categoría}
-          onChange={manejarInput}
-        />
+          <select
+            name="estado"
+            value={nuevoProyecto.estado}
+            onChange={manejarInput}
+          >
+            <option value="">
+              Seleccione un estado
+            </option>
 
-        <select
-          name="estado"
-          value={nuevoProyecto.estado}
-          onChange={manejarInput}
-        >
-          <option value="">
-            Seleccione un estado
-          </option>
+            <option value="Pendiente">
+              Pendiente
+            </option>
 
-          <option value="Pendiente">
-            Pendiente
-          </option>
+            <option value="En Progreso">
+              En Progreso
+            </option>
 
-          <option value="En Progreso">
-            En Progreso
-          </option>
+            <option value="Completado">
+              Completado
+            </option>
+          </select>
 
-          <option value="Completado">
-            Completado
-          </option>
-        </select>
+          <button onClick={agregarProyecto}>
+            Agregar Proyecto
+          </button>
+        </div>
 
-        <button onClick={agregarProyecto}>
-          Agregar Proyecto
-        </button>
-      </section>
+      <p className="total-proyectos">Total de proyectos: {proyectos.length}</p>
 
-      <section className="lista-proyectos">
+      <section className="proyectos-container">
         {proyectos.length > 0 ? (
           proyectos.map((proyecto) => (
             <ProyectoCard

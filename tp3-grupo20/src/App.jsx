@@ -6,10 +6,9 @@ function App() {
   return (
     <>
       <Header />
-      <main>
-        {/* El contenido principal irá aquí */}
-      </main>
       
+      <ListaProyectos />
+
       <Footer />
     </>
   )

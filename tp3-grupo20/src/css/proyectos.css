@@ -1,25 +1,13 @@
 /* ----- Importacion de "proyectos.css" TP1 ----- */
-
-/* CONSISTENCIA VISUAL: definicion de variables y reset */
 :root {
-    /* Colores y tipografia */
-    
-    /* Azul Principal: inspirado en el azul oscuro del logo */
-    --color-primario: #1a3a5a; 
-    
-    /* Azul de acento: para botones y enlaces */
-    --color-secundario: #0056b3; 
+  --color-primario: #1a3a5a; 
+  --color-secundario: #0056b3; 
+  --color-fondo: #f8fafc;
+  --color-texto: #1e293b;
+  --color-blanco: #ffffff;
+  --color-acento: #d32f2f;
 
-    /* Fondos y textos */
-    --color-fondo: #f8fafc;
-    --color-texto: #1e293b;
-    --color-blanco: #ffffff;
-
-    /* Color de contraste: basado en el rojo del logo */
-    --color-acento: #d32f2f;
-    
-    /* Tipografia */
-    --fuente-principal: 'Segoe UI', Helvetica, Arial, sans-serif; /* opciones */
+  --fuente-principal: 'Segoe UI', Helvetica, Arial, sans-serif; /* opciones */
 }
 
 * {
@@ -30,7 +18,6 @@
 }
 
 body {
-    /* Caracteristicas del body */
     font-family: var(--fuente-principal);
     background-color: var(--color-fondo);
     color: var(--color-texto);
@@ -58,23 +45,23 @@ header {
 
 .header-content {
     display: flex;
-    align-items: center;             /* Alineación vertical central */
-    justify-content: space-between;  /* Distribuye logo y texto */
+    align-items: center;             
+    justify-content: space-between;  
     max-width: auto;
     margin: 0 auto;
 }
 
 .header-text {
-    flex-grow: 1;           /* Ocupa el espacio restante */
-    text-align: center;     /* Centra el título y el menú */
+    flex-grow: 1;           
+    text-align: center;     
     margin-right: 70px;
     width: 100%;
 }
 
 .header-text nav ul {
-    display: flex;             /* Alinea los items en horizontal */
-    justify-content: center;   /* Los centra en la pantalla */
-    gap: 0;                    /* Espacio entre cada enlace */
+    display: flex;            
+    justify-content: center;
+    gap: 0;                    
     list-style: none;
     margin-top: 15px;
     width: 100%;
@@ -87,14 +74,14 @@ header {
 
 /* Separadores menú de navegacion */
 .header-text nav li:not(:last-child) {
-    border-right: 2px solid var(--color-blanco); /* Línea blanca sutil */
+    border-right: 2px solid var(--color-blanco);
 }
 
 .header-text nav a {
     color: var(--color-blanco);
     text-decoration: none;
     font-weight: bold;
-    padding: 0 20px; /* Espacio a los lados del texto para que no pegue al borde */
+    padding: 0 20px; 
     transition: color 0.3s ease;
 }
 
@@ -114,8 +101,121 @@ header {
 }
 
 .logo:hover {
-    transform: scale(1.05); /* El logo crece un poco al pasar el mouse */
+    transform: scale(1.05);
 }
+
+/* BUSCADOR */
+.titulo-buscador {
+    display: inline-block; /* Permite que el fondo solo cubra el texto */
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 1.8rem;
+    cursor: default;
+    align-content:center;
+    text-align: left;
+}
+
+.buscador-group {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;       /* Permite que bajen si no hay espacio */
+    gap: 15px;
+    width: 100%;           /* Ocupa todo el ancho del contenedor blanco */
+    padding: 15px 15px;
+    margin-bottom: auto;
+    background-color: var(--color-blanco);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* Hacer que cada input y select crezca proporcionalmente */
+.buscador-group input, 
+.buscador-group select {
+    flex: 1 1 200px;       /* El '1' inicial hace que se estiren para ocupar el hueco */
+    height: 45px;
+    padding: 0 15px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+}
+
+.buscador-group button {
+    width: 100%;           /* Obliga al botón a ocupar toda la fila inferior */
+    height: 45px;
+    margin-top: 10px;      /* Separación de los inputs de arriba */
+    background-color: var(--color-primario);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.buscador-group button:hover {
+    background-color: var(--color-secundario);
+}
+
+/* Botones */
+.boton {
+  display: inline-block;
+  background-color: var(--color-primario);
+  color: var(--color-blanco);
+  padding: 8px 16px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.boton:hover {
+    background-color: var(--color-secundario);
+}
+
+/* PROYECTOS */
+.proyectos-disponibles {
+    grid-column: 1 / -1; 
+    color: var(--color-texto);
+    margin: 20px 0 10px 0;
+    font-size: 2.3rem;
+    text-align: center;
+}
+
+.total-proyectos {
+    grid-column: 1 / -1; 
+    color: var(--color-texto);
+    margin: 20px 0 10px 0;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.proyectos-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));  /* Tamaño para las tarjetas */
+    gap: 25px;
+    width: 100%;
+}
+
+.proyecto {
+    background-color: var(--color-blanco);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    overflow: hidden;
+    height: 100%;  /* Para que todas las tarjetas midan lo mismo */
+    transition: transform 0.2s;
+}
+
+/* Efecto al pasar el mouse por la tarjeta */
+.proyecto:hover {
+    transform: translateY(-5px);
+}
+
 
 /* FOOTER */
 footer {

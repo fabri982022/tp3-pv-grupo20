@@ -2,6 +2,17 @@ const ProyectoCard = ({ proyecto, eliminarProyecto }) => {
   // Desestructuración del objeto proyecto
   const { título, categoría, estado, id } = proyecto;
 
+  // Manejador de eliminar con confirmación
+  const confirmarEliminacion = () => {
+    const confirmado = window.confirm(
+      `¿Estás seguro de que deseas eliminar el proyecto "${título}"? Esta acción no se puede deshacer.`
+    );
+    
+    if (confirmado) {
+      eliminarProyecto(id);
+    }
+  };
+
   return (
     <article className="card-proyecto">
       <h2>{título}</h2>
@@ -15,10 +26,10 @@ const ProyectoCard = ({ proyecto, eliminarProyecto }) => {
       </p>
 
       <div className="botones-tarjeta">
-        <button className="btn btn-detalle">
+        <button className="btn btn-detalle" title="Ver más información del proyecto">
           Ver detalle
         </button>
-        <button className="btn btn-eliminar" onClick={() => eliminarProyecto(id)}>
+        <button className="btn btn-eliminar" onClick={confirmarEliminacion} title="Eliminar este proyecto">
           Eliminar
         </button>
       </div>

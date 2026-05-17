@@ -100,22 +100,49 @@ header {
     transition: transform 0.3s ease;
 }
 
-.logo:hover {
-    transform: scale(1.05);
+/* Estilos para el estado */
+.estado {
+  display: inline-block;
+
+  padding: 0.35rem 0.75rem;
+
+  border-radius: 8px;
+
+  font-weight: 600;
+
+  font-size: 0.85rem;
 }
 
-/* BUSCADOR */
-.titulo-buscador {
-    display: inline-block; /* Permite que el fondo solo cubra el texto */
-    background-color: var(--color-fondo);
-    color: var(--color-texto);
-    padding: 8px 15px;
-    border-radius: 5px;
-    font-size: 1.8rem;
-    cursor: default;
-    align-content:center;
-    text-align: left;
+.estado-completado {
+  background-color: #d1fae5;
+
+  color: #065f46;
 }
+
+.estado-en-progreso {
+  background-color: #fef3c7;
+
+  color: #92400e;
+}
+
+.estado-pendiente {
+  background-color: #fee2e2;
+
+  color: #991b1b;
+}
+
+/* Contenedor de botones */
+.botones-tarjeta {
+  display: flex;
+
+  gap: 0.8rem;
+
+  margin-top: 1.2rem;
+}
+
+/* Estilos base para botones */
+.btn {
+  flex: 1;
 
 .buscador-group {
     display: flex;
@@ -140,35 +167,7 @@ header {
     border-radius: 6px;
 }
 
-.buscador-group button {
-    width: 100%;           /* Obliga al botón a ocupar toda la fila inferior */
-    height: 45px;
-    margin-top: 10px;      /* Separación de los inputs de arriba */
-    background-color: var(--color-primario);
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.3s;
-}
-
-.buscador-group button:hover {
-    background-color: var(--color-secundario);
-}
-
-/* Botones */
-.boton {
-  display: inline-block;
-  background-color: var(--color-primario);
-  color: var(--color-blanco);
-  padding: 8px 16px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: bold;
-  margin-top: 10px;
-  transition: background-color 0.3s ease;
-}
+  font-weight: 600;
 
 .boton:hover {
     background-color: var(--color-secundario);
@@ -183,45 +182,28 @@ header {
     text-align: center;
 }
 
-.total-proyectos {
-    grid-column: 1 / -1; 
-    color: var(--color-texto);
-    margin: 20px 0 10px 0;
-    font-size: 1.5rem;
-    text-align: center;
+/* Botón Ver detalle */
+.btn-detalle {
+  background-color: #0f766e;
+
+  color: white;
 }
 
-.proyectos-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));  /* Tamaño para las tarjetas */
-    gap: 25px;
-    width: 100%;
+.btn-detalle:hover {
+  background-color: #115e59;
+
+  transform: scale(1.02);
 }
 
-.proyecto {
-    background-color: var(--color-blanco);
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-    overflow: hidden;
-    height: 100%;  /* Para que todas las tarjetas midan lo mismo */
-    transition: transform 0.2s;
+/* Botón Eliminar */
+.btn-eliminar {
+  background-color: #dc2626;
+
+  color: white;
 }
 
-/* Efecto al pasar el mouse por la tarjeta */
-.proyecto:hover {
-    transform: translateY(-5px);
-}
+.btn-eliminar:hover {
+  background-color: #b91c1c;
 
-
-/* FOOTER */
-footer {
-    background-color: var(--color-primario);
-    color: var(--color-blanco);
-    text-align: center;
-    padding: 10px;
-    margin-top: 40px;
+  transform: scale(1.02);
 }

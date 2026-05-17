@@ -1,19 +1,27 @@
 const ProyectoCard = ({ proyecto, eliminarProyecto }) => {
+  // Desestructuración del objeto proyecto
+  const { título, categoría, estado, id } = proyecto;
+
   return (
-    <article className="proyecto">
-      <h3 className ="proyectos-disponibles">{proyecto.título}</h3>
+    <article className="card-proyecto">
+      <h2>{título}</h2>
 
       <p>
-        <strong>Categoría: </strong> {proyecto.categoría}
+        <strong>Categoría:</strong> {categoría}
       </p>
 
       <p>
-        <strong>Estado: </strong> {proyecto.estado}
+        <strong>Estado:</strong> <span className={`estado estado-${estado.toLowerCase().replace(/\s+/g, '-')}`}>{estado}</span>
       </p>
 
-      <button className="boton" onClick={() => eliminarProyecto(proyecto.id)}>
-        Eliminar Proyecto
-      </button>
+      <div className="botones-tarjeta">
+        <button className="btn btn-detalle">
+          Ver detalle
+        </button>
+        <button className="btn btn-eliminar" onClick={() => eliminarProyecto(id)}>
+          Eliminar
+        </button>
+      </div>
     </article>
   )
 }

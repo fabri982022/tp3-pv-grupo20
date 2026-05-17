@@ -147,19 +147,54 @@
   color: #475569;
 }
 
-.card-proyecto button {
-  margin-top: 1rem;
+/* Estilos para el estado */
+.estado {
+  display: inline-block;
 
-  width: 100%;
+  padding: 0.35rem 0.75rem;
+
+  border-radius: 8px;
+
+  font-weight: 600;
+
+  font-size: 0.85rem;
+}
+
+.estado-completado {
+  background-color: #d1fae5;
+
+  color: #065f46;
+}
+
+.estado-en-progreso {
+  background-color: #fef3c7;
+
+  color: #92400e;
+}
+
+.estado-pendiente {
+  background-color: #fee2e2;
+
+  color: #991b1b;
+}
+
+/* Contenedor de botones */
+.botones-tarjeta {
+  display: flex;
+
+  gap: 0.8rem;
+
+  margin-top: 1.2rem;
+}
+
+/* Estilos base para botones */
+.btn {
+  flex: 1;
 
   padding: 0.85rem 1rem;
 
   border: none;
   border-radius: 12px;
-
-  background-color: #dc2626;
-
-  color: white;
 
   font-weight: 600;
 
@@ -170,7 +205,27 @@
     transform 0.2s ease;
 }
 
-.card-proyecto button:hover {
+/* Botón Ver detalle */
+.btn-detalle {
+  background-color: #0f766e;
+
+  color: white;
+}
+
+.btn-detalle:hover {
+  background-color: #115e59;
+
+  transform: scale(1.02);
+}
+
+/* Botón Eliminar */
+.btn-eliminar {
+  background-color: #dc2626;
+
+  color: white;
+}
+
+.btn-eliminar:hover {
   background-color: #b91c1c;
 
   transform: scale(1.02);

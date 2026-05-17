@@ -100,110 +100,363 @@ header {
     transition: transform 0.3s ease;
 }
 
-/* Estilos para el estado */
+/* Estilos para el estado - MEJORADO */
 .estado {
   display: inline-block;
-
-  padding: 0.35rem 0.75rem;
-
-  border-radius: 8px;
-
-  font-weight: 600;
-
-  font-size: 0.85rem;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .estado-completado {
-  background-color: #d1fae5;
-
-  color: #065f46;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
 }
 
 .estado-en-progreso {
-  background-color: #fef3c7;
-
-  color: #92400e;
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: white;
 }
 
 .estado-pendiente {
-  background-color: #fee2e2;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white;
+}
 
-  color: #991b1b;
+/* Contenedor de proyectos */
+.proyectos-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+/* Tarjeta de proyecto - MEJORADO */
+.card-proyecto {
+  background: var(--color-blanco);
+  border-radius: 16px;
+  padding: 1.8rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-proyecto::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-primario), var(--color-secundario));
+}
+
+.card-proyecto:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+}
+
+.card-proyecto h2 {
+  color: var(--color-primario);
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.card-proyecto p {
+  color: #64748b;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.card-proyecto strong {
+  color: var(--color-texto);
+  font-weight: 600;
 }
 
 /* Contenedor de botones */
 .botones-tarjeta {
   display: flex;
-
-  gap: 0.8rem;
-
-  margin-top: 1.2rem;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
 }
 
-/* Estilos base para botones */
+/* Estilos base para botones - MEJORADO */
 .btn {
   flex: 1;
-
-.buscador-group {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;       /* Permite que bajen si no hay espacio */
-    gap: 15px;
-    width: 100%;           /* Ocupa todo el ancho del contenedor blanco */
-    padding: 15px 15px;
-    margin-bottom: auto;
-    background-color: var(--color-blanco);
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-}
-
-/* Hacer que cada input y select crezca proporcionalmente */
-.buscador-group input, 
-.buscador-group select {
-    flex: 1 1 200px;       /* El '1' inicial hace que se estiren para ocupar el hueco */
-    height: 45px;
-    padding: 0 15px;
-    border: 1px solid #cbd5e1;
-    border-radius: 6px;
-}
-
-  font-weight: 600;
-
-.boton:hover {
-    background-color: var(--color-secundario);
-}
-
-/* PROYECTOS */
-.proyectos-disponibles {
-    grid-column: 1 / -1; 
-    color: var(--color-texto);
-    margin: 20px 0 10px 0;
-    font-size: 2.3rem;
-    text-align: center;
+  min-width: 120px;
+  padding: 0.9rem 1.2rem;
+  border: none;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 /* Botón Ver detalle */
 .btn-detalle {
-  background-color: #0f766e;
-
+  background: linear-gradient(135deg, #0f766e 0%, #155e5c 100%);
   color: white;
+  border: 2px solid transparent;
 }
 
 .btn-detalle:hover {
-  background-color: #115e59;
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(15, 118, 110, 0.3);
+  background: linear-gradient(135deg, #115e59 0%, #0d504a 100%);
+}
 
-  transform: scale(1.02);
+.btn-detalle:active {
+  transform: scale(0.98);
 }
 
 /* Botón Eliminar */
 .btn-eliminar {
-  background-color: #dc2626;
-
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
   color: white;
+  border: 2px solid transparent;
 }
 
 .btn-eliminar:hover {
-  background-color: #b91c1c;
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(220, 38, 38, 0.3);
+  background: linear-gradient(135deg, #b91c1c 0%, #991b1b 100%);
+}
 
-  transform: scale(1.02);
+.btn-eliminar:active {
+  transform: scale(0.98);
+}
+
+/* Buscador y formulario mejorado */
+.buscador-group {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 15px;
+    width: 100%;
+    padding: 20px;
+    margin-bottom: auto;
+    background: var(--color-blanco);
+    border-radius: 14px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+.buscador-group input, 
+.buscador-group select {
+    flex: 1 1 200px;
+    height: 48px;
+    padding: 0 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-family: var(--fuente-principal);
+    transition: all 0.3s ease;
+    background-color: #f8fafc;
+}
+
+.buscador-group input:focus,
+.buscador-group select:focus {
+    outline: none;
+    border-color: var(--color-primario);
+    background-color: var(--color-blanco);
+    box-shadow: 0 0 0 4px rgba(26, 58, 90, 0.1);
+}
+
+.buscador-group button {
+    flex: 1 1 200px;
+    height: 48px;
+    background: linear-gradient(135deg, var(--color-primario), var(--color-secundario));
+    color: var(--color-blanco);
+    border: none;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.buscador-group button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(26, 58, 90, 0.3);
+}
+
+.buscador-group button:active {
+    transform: translateY(0);
+}
+
+/* PROYECTOS */
+.proyectos-disponibles {
+    color: var(--color-primario);
+    margin: 20px 0 10px 0;
+    font-size: 2.3rem;
+    text-align: center;
+    font-weight: 700;
+}
+
+.titulo-buscador {
+    color: var(--color-primario);
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    font-weight: 700;
+}
+
+.total-proyectos {
+    text-align: center;
+    color: #64748b;
+    font-size: 1rem;
+    margin: 1rem 0;
+}
+
+/* ANIMACIONES Y EFECTOS ADICIONALES */
+
+/* Animación de entrada para tarjetas */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card-proyecto {
+    animation: slideUp 0.5s ease-out;
+}
+
+/* Efectos de glow en hover para botones */
+@keyframes glow {
+    0% {
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+    50% {
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+    100% {
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* FOOTER MEJORADO */
+footer {
+    background-color: var(--color-primario);
+    color: var(--color-blanco);
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: 3rem;
+    border-top: 4px solid var(--color-secundario);
+    font-size: 0.9rem;
+}
+
+footer p {
+    margin: 0;
+    opacity: 0.95;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+    .proyectos-container {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .card-proyecto {
+        padding: 1.5rem;
+    }
+
+    .card-proyecto h2 {
+        font-size: 1.2rem;
+    }
+
+    .botones-tarjeta {
+        gap: 0.8rem;
+    }
+
+    .btn {
+        min-width: 100px;
+        padding: 0.8rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    .buscador-group {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .buscador-group input,
+    .buscador-group select,
+    .buscador-group button {
+        width: 100%;
+        flex: 1 1 auto;
+    }
+
+    .proyectos-disponibles {
+        font-size: 1.8rem;
+    }
+
+    .titulo-buscador {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    main {
+        padding: 15px;
+        width: 100%;
+    }
+
+    .proyectos-container {
+        gap: 1rem;
+    }
+
+    .card-proyecto {
+        padding: 1.2rem;
+        border-radius: 12px;
+    }
+
+    .card-proyecto h2 {
+        font-size: 1rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .card-proyecto p {
+        font-size: 0.85rem;
+    }
+
+    .botones-tarjeta {
+        gap: 0.5rem;
+    }
+
+    .btn {
+        min-width: 90px;
+        padding: 0.7rem 0.8rem;
+        font-size: 0.75rem;
+    }
+
+    .proyectos-disponibles {
+        font-size: 1.5rem;
+    }
 }

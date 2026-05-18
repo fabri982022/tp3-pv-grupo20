@@ -39,7 +39,6 @@ const proyectoService = (() => {
       : p
   );
 },
-
     // Busca proyectos por título (búsqueda case-insensitive)
     buscarProyecto: (texto) => 
       proyectos.filter(p => 

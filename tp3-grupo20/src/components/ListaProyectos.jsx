@@ -89,7 +89,7 @@ const [proyectoSeleccionado, setProyectoSeleccionado] = useState(null)
       estado: ''
     })
   }
-  
+
   const proyectosDisponibles = proyectos.filter(
   proyecto =>
     proyecto.visibilidad === "Disponible"

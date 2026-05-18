@@ -36,5 +36,4 @@ const ProyectoCard = ({ proyecto, eliminarProyecto, seleccionarProyecto}) => {
     </article>
   )
 }
-
 export default ProyectoCard

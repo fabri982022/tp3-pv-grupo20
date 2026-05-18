@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import ProyectoCard from './ProyectoCard'
+import DetalleProyecto from './DetalleProyecto'
 import proyectoService from '../services/proyectoService'
 
 // Estado de proyectos
@@ -7,6 +8,10 @@ const ListaProyectos = () => {
   const [proyectos, setProyectos] = useState(
     proyectoService.obtenerProyectos()
   )
+
+const [proyectoSeleccionado, setProyectoSeleccionado] = useState(null)
+
+
 // Estado para busqueda
   const [busqueda, setBusqueda] = useState('')
 // Estado para nuevo proyecto
@@ -72,7 +77,8 @@ const ListaProyectos = () => {
          nuevoProyecto.categoría
         ),
 
-     estado: nuevoProyecto.estado
+     estado: nuevoProyecto.estado,
+     visibilidad: "Disponible"
 })
 
     setProyectos(proyectoService.obtenerProyectos())
@@ -84,6 +90,10 @@ const ListaProyectos = () => {
     })
   }
 
+  const proyectosDisponibles = proyectos.filter(
+  proyecto =>
+    proyecto.visibilidad === "Disponible"
+)
   return (
     <main>
       <h1 className="proyectos-disponibles">Listado de Proyectos</h1>
@@ -145,21 +155,23 @@ const ListaProyectos = () => {
           </button>
         </div>
 
-      <p className="total-proyectos">Total de proyectos: {proyectos.length}</p>
+      <p className="total-proyectos">Total de proyectos: {proyectosDisponibles.length}</p>
 
       <section className="proyectos-container">
-        {proyectos.length > 0 ? (
-          proyectos.map((proyecto) => (
+        {proyectosDisponibles.length > 0 ? (
+          proyectosDisponibles.map((proyecto) => (
             <ProyectoCard
               key={proyecto.id}
               proyecto={proyecto}
               eliminarProyecto={eliminarProyecto}
+              seleccionarProyecto={setProyectoSeleccionado}
             />
           ))
         ) : (
           <p>No se encontraron proyectos.</p>
         )}
       </section>
+      {  proyectoSeleccionado && (<DetalleProyecto proyecto={proyectoSeleccionado}/>)}
     </main>
   )
 }

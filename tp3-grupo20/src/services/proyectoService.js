@@ -1,11 +1,11 @@
 const proyectoService = (() => {
   // Variable privada: arreglo de proyectos
   let proyectos = [
-    { id: 1, título: "Landing Page", categoría: "Web", estado: "Completado" },
-    { id: 2, título: "App Móvil", categoría: "Móvil", estado: "En Progreso" },
-    { id: 3, título: "API REST", categoría: "Backend", estado: "En Progreso" },
-    { id: 4, título: "Dashboard", categoría: "Web", estado: "Pendiente" },
-    { id: 5, título: "Base de Datos", categoría: "Backend", estado: "Completado" }
+    { id: 1, título: "Landing Page", categoría: "Web", estado: "Completado", visibilidad: "Disponible" },
+    { id: 2, título: "App Móvil", categoría: "Móvil", estado: "En Progreso" , visibilidad: "Disponible" },
+    { id: 3, título: "API REST", categoría: "Backend", estado: "En Progreso", visibilidad: "Disponible" },
+    { id: 4, título: "Dashboard", categoría: "Web", estado: "Pendiente", visibilidad: "Disponible" },
+    { id: 5, título: "Base de Datos", categoría: "Backend", estado: "Completado", visibilidad: "Disponible"}
   ];
 
   // Funciones privadas 
@@ -31,11 +31,14 @@ const proyectoService = (() => {
       );
     },
 
-    // Elimina un proyecto por id
+    // "Elimina" (Oculta) un proyecto segun visibilidad
     eliminarProyecto: (id) => {
-      proyectos = proyectos.filter(p => p.id !== id);
-    },
-
+    proyectos = proyectos.map(p =>
+    p.id === id
+      ? { ...p, visibilidad: "No disponible" }
+      : p
+  );
+},
     // Busca proyectos por título (búsqueda case-insensitive)
     buscarProyecto: (texto) => 
       proyectos.filter(p => 

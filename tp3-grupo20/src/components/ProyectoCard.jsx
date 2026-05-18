@@ -1,4 +1,4 @@
-const ProyectoCard = ({ proyecto, eliminarProyecto }) => {
+const ProyectoCard = ({ proyecto, eliminarProyecto, seleccionarProyecto}) => {
   // Desestructuración del objeto proyecto
   const { título, categoría, estado, id } = proyecto;
 
@@ -26,7 +26,7 @@ const ProyectoCard = ({ proyecto, eliminarProyecto }) => {
       </p>
 
       <div className="botones-tarjeta">
-        <button className="btn btn-detalle" title="Ver más información del proyecto">
+        <button className="btn btn-detalle"  title="Ver más información del proyecto" onClick={() => seleccionarProyecto(proyecto)}>
           Ver detalle
         </button>
         <button className="btn btn-eliminar" onClick={confirmarEliminacion} title="Eliminar este proyecto">
@@ -36,5 +36,4 @@ const ProyectoCard = ({ proyecto, eliminarProyecto }) => {
     </article>
   )
 }
-
 export default ProyectoCard

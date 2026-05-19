@@ -171,7 +171,7 @@ const [proyectoSeleccionado, setProyectoSeleccionado] = useState(null)
           <p>No se encontraron proyectos.</p>
         )}
       </section>
-      {  proyectoSeleccionado && (<DetalleProyecto proyecto={proyectoSeleccionado}/>)}
+      {proyectoSeleccionado && (<DetalleProyecto proyecto={proyectoSeleccionado}/>)}
     </main>
   )
 }

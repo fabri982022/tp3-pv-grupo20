@@ -18,7 +18,13 @@ const [proyectoSeleccionado, setProyectoSeleccionado] = useState(null)
   const [nuevoProyecto, setNuevoProyecto] = useState({
     título: '',
     categoría: '',
-    estado: ''
+    estado: '',
+    descripcion: '', // Nuevas variables temporales
+    linkPdf: '',
+    linkDrive: '',
+    linkGithub: '',
+    nombreIntegrante: '',
+    rolIntegrante: ''
   })
 // Eliminar proyecto
   const eliminarProyecto = (id) => {
@@ -50,7 +56,7 @@ const [proyectoSeleccionado, setProyectoSeleccionado] = useState(null)
         palabra.slice(1)
     )
     .join(' ')
-}
+  }
 
 // Actualizar datos del nuevo proyecto
   const manejarInput = (e) => {
@@ -62,38 +68,69 @@ const [proyectoSeleccionado, setProyectoSeleccionado] = useState(null)
 
 // Agregar nuevo proyecto
   const agregarProyecto = () => {
+    // Desestructuracion
+    const {
+      título,
+      categoría,
+      estado,
+      descripcion,
+      linkPdf,
+      linkDrive,
+      linkGithub,
+      nombreIntegrante,
+      rolIntegrante
+    } = nuevoProyecto;
+
+    // Validacion de campos obligatorios
     if (
-      nuevoProyecto.título.trim() === '' ||
-      nuevoProyecto.categoría.trim() === '' ||
-      nuevoProyecto.estado.trim() === ''
+      título.trim() === '' ||
+      categoría.trim() === '' ||
+      estado.trim() === '' ||
+      descripcion.trim() === ''
     ) {
-      return
+      alert("Por favor, completa los campos obligatorios (Título, Categoría, Estado y Descripción).");
+      return;
     }
 
     proyectoService.agregarProyecto({
-        título: formatearTexto(nuevoProyecto.título),
+      título: formatearTexto(título),         
+      categoría: formatearTexto(categoría),   
+      estado: estado,                         
+      visibilidad: "Disponible",
+      descripcion: descripcion.trim(),    // Agregamos la descripción larga
 
-        categoría: formatearTexto(
-         nuevoProyecto.categoría
-        ),
+      // Creamos el objeto de recursos
+      recursos: {
+        pdf: linkPdf.trim() || "https://unju.edu.ar/no-disponible.pdf",
+        drive: linkDrive.trim() || "https://drive.google.com/no-disponible",
+        github: linkGithub.trim() || "https://github.com/no-disponible"
+      },
 
-     estado: nuevoProyecto.estado,
-     visibilidad: "Disponible"
-})
+      // Creamos el arreglo de objetos para el equipo
+      equipo: [{ 
+        nombre: nombreIntegrante.trim() || "Integrante Anónimo", 
+        rol: rolIntegrante.trim() || "Colaborador" 
+      }]
+    })
 
     setProyectos(proyectoService.obtenerProyectos())
 
     setNuevoProyecto({
       título: '',
       categoría: '',
-      estado: ''
+      estado: '',
+      descripcion: '',
+      linkPdf: '',
+      linkDrive: '',
+      linkGithub: '',
+      nombreIntegrante: '',
+      rolIntegrante: ''  
     })
   }
 
   const proyectosDisponibles = proyectos.filter(
-  proyecto =>
-    proyecto.visibilidad === "Disponible"
-)
+    proyecto => proyecto.visibilidad === "Disponible"
+  )
   return (
     <main>
       <h1 className="proyectos-disponibles">Listado de Proyectos</h1>

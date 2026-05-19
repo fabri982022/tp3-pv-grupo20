@@ -26,9 +26,13 @@ const ProyectoCard = ({ proyecto, eliminarProyecto, seleccionarProyecto}) => {
       </p>
 
       <div className="botones-tarjeta">
-        <button className="btn btn-detalle"  title="Ver más información del proyecto" onClick={() => seleccionarProyecto(proyecto)}>
+        {/*<button className="btn btn-detalle"  title="Ver más información del proyecto" onClick={() => seleccionarProyecto(proyecto)}>
           Ver detalle
-        </button>
+        </button>*/}
+      <button className="btn btn-detalle" onClick={() => seleccionarProyecto(proyecto)}>
+         Ver detalle
+      </button>
+
         <button className="btn btn-eliminar" onClick={confirmarEliminacion} title="Eliminar este proyecto">
           Eliminar
         </button>

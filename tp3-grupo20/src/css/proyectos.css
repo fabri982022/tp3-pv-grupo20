@@ -41,6 +41,7 @@ header {
     background-color: var(--color-primario);
     color: var(--color-blanco);
     padding: 1.5rem 2rem;
+    background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
 }
 
 .header-content {
@@ -329,6 +330,204 @@ header {
     margin: 1rem 0;
 }
 
+/* FORMULARIO */
+.titulo-formulario {
+    color: var(--color-primario);
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+/* Contenedor principal en formato Tarjeta */
+.formulario-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 900px;
+  margin: 0 auto 32px auto;
+}
+
+/* Estilos para las sub-secciones */
+.form-seccion {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.form-seccion legend {
+  font-weight: 600;
+  color: #1e3a8a;
+  padding: 0 8px;
+  font-size: 0.95rem;
+}
+
+/* Grillas Dinámicas */
+.grid-tres-columnas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+}
+
+.grid-dos-columnas {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* Maquetado adaptado para el Textarea largo */
+.formulario-card textarea {
+  width: 100%;
+  min-height: 100px;
+  resize: vertical;
+  padding: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+/* Inputs estilizados */
+.formulario-card input, 
+.formulario-card select {
+  padding: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Foco de interacción limpio */
+.formulario-card input:focus,
+.formulario-card select:focus,
+.formulario-card textarea:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+/* Área inferior del botón de Guardado */
+.form-acciones {
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 16px;
+}
+
+.btn-agregar-principal {
+  background: linear-gradient var(--color-secundario);
+  background: var(--color-primario);
+  color: var(--color-blanco);
+  padding: 14px 28px;
+  border: 2px solid transparent;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.btn-agregar-principal:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px var(--color-secundario);
+  background: linear-gradient var(--color-secundario);
+  background: var(--color-secundario);
+}
+
+.btn-agregar-principal:active {
+  transform: scale(0.98);
+}
+
+/* DETALLE */
+.detalle-proyecto-container {
+  background: #f8fafc;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  font-family: system-ui, -apple-system, sans-serif;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+/* Cabecera*/
+.detalle-header {
+  background: var(--color-primario);
+  color: white;
+  padding: 32px;
+  border-bottom: 4px solid #3b82f6;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}  
+
+.detalle-header h1 {
+  margin: 12px 0;
+  font-size: 2.2rem;
+  letter-spacing: -0.025em;
+}
+
+/* Formateo de los párrafos de descripción */
+.detalle-descripcion h2 {
+    text-align: center;
+    color: var(--color-secundario);
+}
+
+.detalle-descripcion {
+    padding: 20px 20px;
+}
+
+.parrafo-descripcion {
+  color: var(--color-texto);
+  line-height: 1.6;
+  font-size: 0.98rem;
+  text-align: justify;
+}
+
+.detalle-recursos h2, .detalle-equipo h2 {
+    color: var(--color-secundario);
+}
+
+.detalle-recursos {
+    float: left;
+    width: 50%;
+    text-align: center;
+}
+
+.detalle-equipo {
+    float: left;
+    width: 50%;
+    text-align: center;
+}
+
+.detalle-recursos ul, li, a{
+  align-items: center;
+  padding: 12px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  text-align: center;
+  text-decoration: none;
+  color: var(--color-texto);
+}
+
+.detalle-recursos a:hover {
+  color: var(--color-secundario);
+  text-decoration: underline;
+}
+
+.equipo-grid {
+  display: grid;
+  grid-template-rows: repeat(auto-fit, minmax(20px, 1fr));
+  gap: 16px;
+  padding: 12px;
+  color: var(--color-texto);
+}
+ 
 /* ANIMACIONES Y EFECTOS ADICIONALES */
 
 /* Animación de entrada para tarjetas */

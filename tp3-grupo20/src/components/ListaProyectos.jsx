@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import ProyectoCard from './ProyectoCard'
 import DetalleProyecto from './DetalleProyecto'
 import proyectoService from '../services/proyectoService'
@@ -11,9 +11,24 @@ const ListaProyectos = () => {
 
 const [proyectoSeleccionado, setProyectoSeleccionado] = useState(null)
 
+// Estado para la última actualización de la lista
+const [ultimaActualizacion, setUltimaActualizacion] = useState(new Date())
+
 
 // Estado para busqueda
   const [busqueda, setBusqueda] = useState('')
+
+// Función para formatear la fecha y hora
+const obtenerMensajeActualizacion = (fecha) => {
+  const dia = String(fecha.getDate()).padStart(2, '0')
+  const mes = String(fecha.getMonth() + 1).padStart(2, '0')
+  const anio = fecha.getFullYear()
+  const horas = String(fecha.getHours()).padStart(2, '0')
+  const minutos = String(fecha.getMinutes()).padStart(2, '0')
+  
+  return `Última actualización de la lista: ${dia}/${mes}/${anio} a las ${horas}:${minutos} hs.`
+}
+
 // Estado para nuevo proyecto
   const [nuevoProyecto, setNuevoProyecto] = useState({
     título: '',
@@ -31,6 +46,7 @@ const [proyectoSeleccionado, setProyectoSeleccionado] = useState(null)
     proyectoService.eliminarProyecto(id)
 
     setProyectos(proyectoService.obtenerProyectos())
+    setUltimaActualizacion(new Date())
   }
 // Buscar proyectos en tiempo real
   const manejarBusqueda = (e) => {
@@ -43,6 +59,8 @@ const [proyectoSeleccionado, setProyectoSeleccionado] = useState(null)
     } else {
       setProyectos(proyectoService.buscarProyecto(texto))
     }
+    
+    setUltimaActualizacion(new Date())
   }
 
   // Formatear texto ingresado
@@ -114,6 +132,7 @@ const [proyectoSeleccionado, setProyectoSeleccionado] = useState(null)
     })
 
     setProyectos(proyectoService.obtenerProyectos())
+    setUltimaActualizacion(new Date())
 
     setNuevoProyecto({
       título: '',
@@ -134,6 +153,8 @@ const [proyectoSeleccionado, setProyectoSeleccionado] = useState(null)
   return (
     <main>
       <h1 className="proyectos-disponibles">Listado de Proyectos</h1>
+      
+      <p className="mensaje-actualizacion">{obtenerMensajeActualizacion(ultimaActualizacion)}</p>
 
       <h2 className="titulo-buscador">Buscador de Proyectos</h2>
 

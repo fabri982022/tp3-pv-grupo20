@@ -7,15 +7,35 @@ import FormularioProyecto from './FormularioProyecto'
 
 const ListaProyectos = () => {
 
+  // Variables de estado
   const [proyectos, setProyectos] = useState(
     proyectoService.obtenerProyectos()
   )
 
- const [proyectoSeleccionado, setProyectoSeleccionado] = useState(null)
+  const [proyectoSeleccionado, setProyectoSeleccionado] = useState(null)
 
-// Estado para busqueda
   const [busqueda, setBusqueda] = useState('')
 
+  const [ultimaActualizacion, setUltimaActualizacion] = useState(null)
+
+// useEffect para los cambios en la lista de proyectos
+  useEffect(() => {
+    // Caputura de la fecha y hora
+    const fechaHora = new Date()
+
+    // Formato especifico de fecha y hora
+    const dia = String(fechaHora.getDate()).padStart(2, '0')
+    const mes = String(fechaHora.getMonth() + 1).padStart(2, '0') 
+    const anio = fechaHora.getFullYear()
+    const horas = String(fechaHora.getHours()).padStart(2, '0')
+    const minutos = String(fechaHora.getMinutes()).padStart(2, '0')
+
+    const mensajeConFormato = `Última actualización de la lista: ${dia}/${mes}/${anio} a las ${horas}:${minutos} hs.`
+
+    // Guardado del mensaje en el estado de actualizacion
+    setUltimaActualizacion(mensajeConFormato)
+
+  },[proyectos])  // DEPENDENCIA: escucha el estado de 'proyectos'
  
 // Eliminar proyecto
   const eliminarProyecto = (id) => {
@@ -111,8 +131,6 @@ const ListaProyectos = () => {
   return (
     <main>
       <h1 className="proyectos-disponibles">Listado de Proyectos</h1>
-      
-      <p className="mensaje-actualizacion">{obtenerMensajeActualizacion(ultimaActualizacion)}</p>
 
       <h2 className="titulo-buscador">Buscador de Proyectos</h2>
 

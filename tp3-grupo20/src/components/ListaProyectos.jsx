@@ -114,7 +114,7 @@ const obtenerMensajeActualizacion = (fecha) => {
       título: formatearTexto(título),         
       categoría: formatearTexto(categoría),   
       estado: estado,                         
-      visibilidad: "Disponible",
+      disponible: true,
       descripcion: descripcion.trim(),    // Agregamos la descripción larga
 
       // Creamos el objeto de recursos
@@ -148,7 +148,7 @@ const obtenerMensajeActualizacion = (fecha) => {
   }
 
   const proyectosDisponibles = proyectos.filter(
-    proyecto => proyecto.visibilidad === "Disponible"
+  proyecto => proyecto.disponible
   )
   return (
     <main>

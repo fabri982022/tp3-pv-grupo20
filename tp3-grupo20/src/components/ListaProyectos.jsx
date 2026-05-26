@@ -2,45 +2,21 @@ import { useState, useEffect } from 'react'
 import ProyectoCard from './ProyectoCard'
 import DetalleProyecto from './DetalleProyecto'
 import proyectoService from '../services/proyectoService'
+import FormularioProyecto from './FormularioProyecto'
 
-// Estado de proyectos
+
 const ListaProyectos = () => {
+
   const [proyectos, setProyectos] = useState(
     proyectoService.obtenerProyectos()
   )
 
-const [proyectoSeleccionado, setProyectoSeleccionado] = useState(null)
-
-// Estado para la última actualización de la lista
-const [ultimaActualizacion, setUltimaActualizacion] = useState(new Date())
-
+ const [proyectoSeleccionado, setProyectoSeleccionado] = useState(null)
 
 // Estado para busqueda
   const [busqueda, setBusqueda] = useState('')
 
-// Función para formatear la fecha y hora
-const obtenerMensajeActualizacion = (fecha) => {
-  const dia = String(fecha.getDate()).padStart(2, '0')
-  const mes = String(fecha.getMonth() + 1).padStart(2, '0')
-  const anio = fecha.getFullYear()
-  const horas = String(fecha.getHours()).padStart(2, '0')
-  const minutos = String(fecha.getMinutes()).padStart(2, '0')
-  
-  return `Última actualización de la lista: ${dia}/${mes}/${anio} a las ${horas}:${minutos} hs.`
-}
-
-// Estado para nuevo proyecto
-  const [nuevoProyecto, setNuevoProyecto] = useState({
-    título: '',
-    categoría: '',
-    estado: '',
-    descripcion: '', // Nuevas variables temporales
-    linkPdf: '',
-    linkDrive: '',
-    linkGithub: '',
-    nombreIntegrante: '',
-    rolIntegrante: ''
-  })
+ 
 // Eliminar proyecto
   const eliminarProyecto = (id) => {
     proyectoService.eliminarProyecto(id)
@@ -76,16 +52,9 @@ const obtenerMensajeActualizacion = (fecha) => {
     .join(' ')
   }
 
-// Actualizar datos del nuevo proyecto
-  const manejarInput = (e) => {
-    setNuevoProyecto({
-      ...nuevoProyecto,
-      [e.target.name]: e.target.value
-    })
-  }
 
 // Agregar nuevo proyecto
-  const agregarProyecto = () => {
+  const agregarProyecto = (nuevoProyecto) => {
     // Desestructuracion
     const {
       título,
@@ -134,17 +103,6 @@ const obtenerMensajeActualizacion = (fecha) => {
     setProyectos(proyectoService.obtenerProyectos())
     setUltimaActualizacion(new Date())
 
-    setNuevoProyecto({
-      título: '',
-      categoría: '',
-      estado: '',
-      descripcion: '',
-      linkPdf: '',
-      linkDrive: '',
-      linkGithub: '',
-      nombreIntegrante: '',
-      rolIntegrante: ''  
-    })
   }
 
   const proyectosDisponibles = proyectos.filter(
@@ -170,104 +128,9 @@ const obtenerMensajeActualizacion = (fecha) => {
       <h2 className="titulo-formulario">Agregar Proyecto</h2>
 
       <div className="formulario-card">
-        {/* Datos principales del proyecto */}
-        <fieldset className="form-seccion">
-          <legend>Información General</legend>
-          <div className="grid-tres-columnas">
-            <input
-              type="text"
-              name="título"
-              placeholder="Título del proyecto"
-              value={nuevoProyecto.título}
-              onChange={manejarInput}
-            />
-            <input
-              type="text"
-              name="categoría"
-              placeholder="Categoría"
-              value={nuevoProyecto.categoría}
-              onChange={manejarInput}
-            />
-            <select
-              name="estado"
-              value={nuevoProyecto.estado}
-              onChange={manejarInput}
-            >
-              <option value="">Seleccione un estado</option>
-              <option value="Pendiente">Pendiente</option>
-              <option value="En Progreso">En Progreso</option>
-              <option value="Completado">Completado</option>
-            </select>
-          </div>
-        </fieldset>
-
-        {/* Descripción Extendida */}
-        <fieldset className="form-seccion">
-          <legend>Detalle del Proyecto</legend>
-          <textarea
-            name="descripcion"
-            placeholder="Descripción del proyecto (mínimo dos párrafos)..."
-            value={nuevoProyecto.descripcion}
-            onChange={manejarInput}
-            required
-          />
-        </fieldset>
-
-        {/* Recursos y enlaces */}
-        <fieldset className="form-seccion">
-          <legend>Recursos Asociados</legend>
-          <div className="grid-tres-columnas">
-            <input
-              type="url"
-              name="linkPdf"
-              placeholder="Enlace al documento PDF"
-              value={nuevoProyecto.linkPdf}
-              onChange={manejarInput}
-            />
-            <input
-              type="url"
-              name="linkDrive"
-              placeholder="Enlace a Google Drive"
-              value={nuevoProyecto.linkDrive}
-              onChange={manejarInput}
-            />
-            <input
-              type="url"
-              name="linkGithub"
-              placeholder="Enlace a GitHub"
-              value={nuevoProyecto.linkGithub}
-              onChange={manejarInput}
-            />
-          </div>
-        </fieldset>
-
-        {/* Datos del equipo */}
-        <fieldset className="form-seccion">
-          <legend>Equipo de Trabajo</legend>
-          <div className="grid-dos-columnas">
-            <input
-              type="text"
-              name="nombreIntegrante"
-              placeholder="Nombre del Integrante"
-              value={nuevoProyecto.nombreIntegrante}
-              onChange={manejarInput}
-            />
-            <input
-              type="text"
-              name="rolIntegrante"
-              placeholder="Rol"
-              value={nuevoProyecto.rolIntegrante}
-              onChange={manejarInput}
-            />
-          </div>
-        </fieldset>
-
-        {/* Botón de envío */}
-        <div className="form-acciones">
-          <button className="btn-agregar-principal" onClick={agregarProyecto}>
-            Guardar y Publicar Proyecto
-          </button>
-        </div>
+        <FormularioProyecto
+          onAgregarProyecto={agregarProyecto}
+        />
       </div>
 
       <p className="total-proyectos">Total de proyectos: {proyectosDisponibles.length}</p>

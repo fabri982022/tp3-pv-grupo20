@@ -1,6 +1,6 @@
 const proyectoService = (() => {
   // Variable privada: arreglo de proyectos
-  let proyectos = [
+  let proyectos = JSON.parse(localStorage.getItem('proyectos')) || [
     { id: 1, título: "Landing Page", categoría: "Web", estado: "Completado", disponible: true, descripcion: "Desarrollo de una página de aterrizaje (landing page) para promocionar un nuevo producto o servicio. El proyecto incluye la creación de un diseño atractivo y responsivo, optimización para motores de búsqueda (SEO) y la implementación de formularios de contacto para captar leads.\n\nLa landing page se construyó utilizando HTML5, CSS3 y JavaScript, con un enfoque en la experiencia del usuario (UX) para maximizar las conversiones. Se realizaron pruebas A/B para evaluar diferentes versiones del diseño y se implementaron mejoras basadas en los resultados obtenidos.",
       recursos: {
       pdf: "https://unju.edu.ar/landing-page.pdf",
@@ -60,12 +60,14 @@ const proyectoService = (() => {
     // Retorna una copia del arreglo (no la referencia original)
     obtenerProyectos: () => [...proyectos],
 
-    // Agrega un nuevo proyecto al arreglo
+    // Agrega un nuevo proyecto al arreglo 
+    // Se guarda el cambio en localStorage para que persista al recargar la pagina.
     agregarProyecto: (proyecto) => {
       proyectos.push({
         id: obtenerNuevoId(),
         ...proyecto
       });
+      localStorage.setItem('proyectos', JSON.stringify(proyectos))
     },
 
     // Actualiza un proyecto por id
@@ -77,15 +79,18 @@ const proyectoService = (() => {
 
 
 
-    // "Elimina" (Oculta) un proyecto segun visibilidad
+// "Elimina" (Oculta) un proyecto cambiando su bandera "disponible" a false.
+// Solo se muestraran los proyectos con disponible: true.
+// Se guarda el cambio en localStorage para lograr que persista al recargar la pagina.
     eliminarProyecto: (id) => {
   proyectos = proyectos.map(p =>
     p.id === id
       ? { ...p, disponible: false }
       : p
   );
+  localStorage.setItem('proyectos', JSON.stringify(proyectos))
 },
-    // Busca proyectos por titulo
+    // Busca proyectos por título (búsqueda case-insensitive)
     buscarProyecto: (texto) => 
       proyectos.filter(p => 
         p.título.toLowerCase().includes(texto.toLowerCase())

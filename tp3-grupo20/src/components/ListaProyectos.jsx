@@ -83,7 +83,7 @@ const ListaProyectos = () => {
       título: formatearTexto(título),         
       categoría: formatearTexto(categoría),   
       estado: estado,                         
-      visibilidad: "Disponible",
+      disponible: true,
       descripcion: descripcion.trim(),    // Agregamos la descripción larga
 
       // Creamos el objeto de recursos
@@ -106,7 +106,7 @@ const ListaProyectos = () => {
   }
 
   const proyectosDisponibles = proyectos.filter(
-    proyecto => proyecto.visibilidad === "Disponible"
+  proyecto => proyecto.disponible
   )
   return (
     <main>

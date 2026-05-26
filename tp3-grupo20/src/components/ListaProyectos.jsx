@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import ProyectoCard from './ProyectoCard'
 import DetalleProyecto from './DetalleProyecto'
 import proyectoService from '../services/proyectoService'
@@ -22,6 +22,7 @@ const ListaProyectos = () => {
     proyectoService.eliminarProyecto(id)
 
     setProyectos(proyectoService.obtenerProyectos())
+    setUltimaActualizacion(new Date())
   }
 // Buscar proyectos en tiempo real
   const manejarBusqueda = (e) => {
@@ -34,6 +35,8 @@ const ListaProyectos = () => {
     } else {
       setProyectos(proyectoService.buscarProyecto(texto))
     }
+    
+    setUltimaActualizacion(new Date())
   }
 
   // Formatear texto ingresado
@@ -98,6 +101,7 @@ const ListaProyectos = () => {
     })
 
     setProyectos(proyectoService.obtenerProyectos())
+    setUltimaActualizacion(new Date())
 
   }
 
@@ -107,6 +111,8 @@ const ListaProyectos = () => {
   return (
     <main>
       <h1 className="proyectos-disponibles">Listado de Proyectos</h1>
+      
+      <p className="mensaje-actualizacion">{obtenerMensajeActualizacion(ultimaActualizacion)}</p>
 
       <h2 className="titulo-buscador">Buscador de Proyectos</h2>
 

@@ -1,42 +1,62 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import ProyectoCard from './ProyectoCard'
 import DetalleProyecto from './DetalleProyecto'
 import proyectoService from '../services/proyectoService'
 import FormularioProyecto from './FormularioProyecto'
-
+import RegistroActividad from './RegistroActividad'
 
 const ListaProyectos = () => {
 
+  // Variables de estado
   const [proyectos, setProyectos] = useState(
     proyectoService.obtenerProyectos()
   )
 
- const [proyectoSeleccionado, setProyectoSeleccionado] = useState(null)
+  const [proyectoSeleccionado, setProyectoSeleccionado] = useState(null)
 
-// Estado para busqueda
   const [busqueda, setBusqueda] = useState('')
 
+  const [ultimaActualizacion, setUltimaActualizacion] = useState(null)
+
+  // Referencia para controlar el renderizado inicial
+  const primerRenderizado = useRef(0) // Valor inicial de useRef. Contador de ejecuciones
+
+  useEffect(() => {
+    // Condicional para la primera carga
+    if (primerRenderizado.current < 2){ // Por el doble renderizado de React 18 'StrictMode'
+      primerRenderizado.current += 1 
+      return
+    }
+
+    // Caputura de la fecha y hora
+    const fechaHora = new Date()
+
+    // Formato especifico de fecha y hora
+    const dia = String(fechaHora.getDate()).padStart(2, '0')
+    const mes = String(fechaHora.getMonth() + 1).padStart(2, '0') 
+    const anio = fechaHora.getFullYear()
+    const horas = String(fechaHora.getHours()).padStart(2, '0')
+    const minutos = String(fechaHora.getMinutes()).padStart(2, '0')
+
+    const mensajeConFormato = `Última actualización de la lista: ${dia}/${mes}/${anio} a las ${horas}:${minutos} hs.`
+
+    // Guardado del mensaje en el estado de actualizacion
+    setUltimaActualizacion(mensajeConFormato)
+
+  },[proyectos])  // DEPENDENCIA: escucha el estado de 'proyectos'
  
 // Eliminar proyecto
   const eliminarProyecto = (id) => {
     proyectoService.eliminarProyecto(id)
 
     setProyectos(proyectoService.obtenerProyectos())
-    setUltimaActualizacion(new Date())
   }
-// Buscar proyectos en tiempo real
+
+// Buscador optimizado para asilamiento de estado
   const manejarBusqueda = (e) => {
     const texto = e.target.value
 
-    setBusqueda(texto)
-
-    if (texto.trim() === '') {
-      setProyectos(proyectoService.obtenerProyectos())
-    } else {
-      setProyectos(proyectoService.buscarProyecto(texto))
-    }
-    
-    setUltimaActualizacion(new Date())
+    setBusqueda(texto)     
   }
 
   // Formatear texto ingresado
@@ -51,7 +71,6 @@ const ListaProyectos = () => {
     )
     .join(' ')
   }
-
 
 // Agregar nuevo proyecto
   const agregarProyecto = (nuevoProyecto) => {
@@ -101,18 +120,19 @@ const ListaProyectos = () => {
     })
 
     setProyectos(proyectoService.obtenerProyectos())
-    setUltimaActualizacion(new Date())
-
   }
 
-  const proyectosDisponibles = proyectos.filter(
-  proyecto => proyecto.disponible
-  )
+  // Aislamiento de la busqueda. Variable calculada en tiempo real
+  const proyectosDisponibles = proyectos.filter(proyecto => {
+    const estaDisponible = proyecto.disponible === true
+    const coincideConBusqueda = proyecto.título.toLowerCase().includes(busqueda.toLowerCase())
+    
+    return estaDisponible && coincideConBusqueda
+  })
+
   return (
     <main>
       <h1 className="proyectos-disponibles">Listado de Proyectos</h1>
-      
-      <p className="mensaje-actualizacion">{obtenerMensajeActualizacion(ultimaActualizacion)}</p>
 
       <h2 className="titulo-buscador">Buscador de Proyectos</h2>
 
@@ -151,6 +171,8 @@ const ListaProyectos = () => {
       </section>
 
       {proyectoSeleccionado && (<DetalleProyecto proyecto={proyectoSeleccionado}/>)}
+
+      {ultimaActualizacion && (<RegistroActividad mensaje={ultimaActualizacion}/>)}
 
     </main>
   )

@@ -1,43 +1,71 @@
-const ProyectoCard = ({ proyecto, eliminarProyecto, seleccionarProyecto}) => {
-  // Desestructuración del objeto proyecto
+import {
+  Card,
+  CardContent,
+  CardActions,
+  Typography,
+  Button,
+  Chip
+} from '@mui/material';
+
+const ProyectoCard = ({ proyecto, eliminarProyecto, seleccionarProyecto }) => {
+
   const { título, categoría, estado, id } = proyecto;
 
-  // Manejador de eliminar con confirmación
   const confirmarEliminacion = () => {
     const confirmado = window.confirm(
       `¿Estás seguro de que deseas eliminar el proyecto "${título}"? Esta acción no se puede deshacer.`
     );
-    
+
     if (confirmado) {
       eliminarProyecto(id);
     }
   };
 
   return (
-    <article className="card-proyecto">
-      <h2>{título}</h2>
+    <Card className="card-proyecto">
 
-      <p>
-        <strong>Categoría:</strong> {categoría}
-      </p>
+      <CardContent>
 
-      <p>
-        <strong>Estado:</strong> <span className={`estado estado-${estado.toLowerCase().replace(/\s+/g, '-')}`}>{estado}</span>
-      </p>
+        <Typography variant="h5" gutterBottom>
+          {título}
+        </Typography>
 
-      <div className="botones-tarjeta">
-        {/*<button className="btn btn-detalle"  title="Ver más información del proyecto" onClick={() => seleccionarProyecto(proyecto)}>
+        <Typography variant="body1">
+          <strong>Categoría:</strong> {categoría}
+        </Typography>
+
+        <Typography variant="body1">
+          <strong>Estado:</strong>
+        </Typography>
+
+        <Chip
+          label={estado}
+          size="small"
+        />
+
+      </CardContent>
+
+      <CardActions>
+
+        <Button
+          variant="outlined"
+          onClick={() => seleccionarProyecto(proyecto)}
+        >
           Ver detalle
-        </button>*/}
-      <button className="btn btn-detalle" onClick={() => seleccionarProyecto(proyecto)}>
-         Ver detalle
-      </button>
+        </Button>
 
-        <button className="btn btn-eliminar" onClick={confirmarEliminacion} title="Eliminar este proyecto">
+        <Button
+          variant="contained"
+          color="error"
+          onClick={confirmarEliminacion}
+        >
           Eliminar
-        </button>
-      </div>
-    </article>
-  )
-}
-export default ProyectoCard
+        </Button>
+
+      </CardActions>
+
+    </Card>
+  );
+};
+
+export default ProyectoCard;

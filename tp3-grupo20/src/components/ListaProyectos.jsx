@@ -1,9 +1,11 @@
 import { useState, useEffect, useRef } from 'react'
+import { Container, Grid } from '@mui/material'
 import ProyectoCard from './ProyectoCard'
 import DetalleProyecto from './DetalleProyecto'
 import proyectoService from '../services/proyectoService'
 import FormularioProyecto from './FormularioProyecto'
 import RegistroActividad from './RegistroActividad'
+
 
 const ListaProyectos = () => {
 
@@ -131,6 +133,7 @@ const ListaProyectos = () => {
   })
 
   return (
+  <Container maxWidth="xl">
     <main>
       <h1 className="proyectos-disponibles">Listado de Proyectos</h1>
 
@@ -155,27 +158,31 @@ const ListaProyectos = () => {
 
       <p className="total-proyectos">Total de proyectos: {proyectosDisponibles.length}</p>
 
-      <section className="proyectos-container">
-        {proyectosDisponibles.length > 0 ? (
-          proyectosDisponibles.map((proyecto) => (
+    <Grid container spacing={3}>
+      {proyectosDisponibles.length > 0 ? (
+        proyectosDisponibles.map((proyecto) => (
+          <Grid item xs={12} sm={6} md={4} key={proyecto.id}>
             <ProyectoCard
-              key={proyecto.id}
               proyecto={proyecto}
               eliminarProyecto={eliminarProyecto}
               seleccionarProyecto={setProyectoSeleccionado}
             />
-          ))
-        ) : (
+          </Grid>
+        ))
+      ) : (
+        <Grid item xs={12}>
           <p>No se encontraron proyectos.</p>
-        )}
-      </section>
+        </Grid>
+      )}
+    </Grid>
 
       {proyectoSeleccionado && (<DetalleProyecto proyecto={proyectoSeleccionado}/>)}
 
-      {ultimaActualizacion && (<RegistroActividad mensaje={ultimaActualizacion}/>)}
+    {ultimaActualizacion && (<RegistroActividad mensaje={ultimaActualizacion}/>)}
 
-    </main>
-  )
+        </main>
+      </Container>
+    )
 }
 
 export default ListaProyectos

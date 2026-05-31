@@ -391,7 +391,7 @@ header {
   font-size: 0.95rem;
 }
 
-/* Inputs estilizados */
+/* Inputs estilizados 
 .formulario-card input, 
 .formulario-card select {
   padding: 12px;
@@ -400,9 +400,11 @@ header {
   font-size: 0.95rem;
   width: 100%;
   box-sizing: border-box;
-}
+} */
 
-/* Foco de interacción limpio */
+
+
+/* Foco de interacción limpio 
 .formulario-card input:focus,
 .formulario-card select:focus,
 .formulario-card textarea:focus {
@@ -410,6 +412,7 @@ header {
   border-color: #3b82f6;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
 }
+  */
 
 /* Área inferior del botón de Guardado */
 .form-acciones {
@@ -672,4 +675,10 @@ footer p {
   text-align: center;
   margin: 15px 0;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+
+.form-paper {
+  padding: 24px;
+  margin-bottom: 24px;
 }

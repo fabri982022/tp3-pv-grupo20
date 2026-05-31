@@ -1,11 +1,11 @@
+import { Alert } from '@mui/material';
+
 const RegistroActividad = ({ mensaje }) => {
   return (
-    <section className="registro-actividad">
-      <p className="mensaje-actualizacion">
-        {mensaje}
-      </p>
-    </section>
-  )
-}
+    <Alert severity="info">
+      {mensaje}
+    </Alert>
+  );
+};
 
-export default RegistroActividad
+export default RegistroActividad;

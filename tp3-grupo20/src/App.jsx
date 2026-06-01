@@ -1,23 +1,31 @@
-import {useState} from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Header from './components/Header'
 import Footer from './components/Footer'
+import Nav from './components/Nav'
+import Dashboard from './components/Dashboard'
 import ListaProyectos from './components/ListaProyectos'
 import DetalleProyecto from './components/DetalleProyecto'
+import PerfilUsuario from './components/PerfilUsuario'
 
 function App() {
-  
- /* Creamos un estado centralizado en el padre llamado 'proyectoSeleccionado'. 
-  Arranca en 'null' porque al abrir la página todavía el usuario no hizo clic en ningún proyecto.*/
-  const [proyectoSeleccionado, setProyectoSeleccionado] = useState(null);
-
   return (
-    <>
+    <Router>
       <Header />
+      <Nav />
       
-      <ListaProyectos />
+      <main>
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/proyectos" element={<ListaProyectos />} />
+          <Route path="/proyectos/:id" element={<DetalleProyecto />} />
+          <Route path="/perfil" element={<PerfilUsuario />} />
+        </Routes>
+      </main>
 
       <Footer />
-    </>
+    </Router>
   )
 }
+
 export default App

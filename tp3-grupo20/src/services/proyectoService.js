@@ -94,7 +94,11 @@ const proyectoService = (() => {
     buscarProyecto: (texto) => 
       proyectos.filter(p => 
         p.título.toLowerCase().includes(texto.toLowerCase())
-      )
+      ),
+
+    // Obtiene un proyecto específico por su ID
+    obtenerProyectoPorId: (id) => 
+      proyectos.find(p => p.id === parseInt(id))
   };
 })();
 

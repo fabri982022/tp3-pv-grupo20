@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { Container, Grid } from '@mui/material'
 import ProyectoCard from './ProyectoCard'
-import DetalleProyecto from './DetalleProyecto'
 import proyectoService from '../services/proyectoService'
 import FormularioProyecto from './FormularioProyecto'
 import RegistroActividad from './RegistroActividad'
@@ -13,8 +12,6 @@ const ListaProyectos = () => {
   const [proyectos, setProyectos] = useState(
     proyectoService.obtenerProyectos()
   )
-
-  const [proyectoSeleccionado, setProyectoSeleccionado] = useState(null)
 
   const [busqueda, setBusqueda] = useState('')
 
@@ -165,7 +162,6 @@ const ListaProyectos = () => {
             <ProyectoCard
               proyecto={proyecto}
               eliminarProyecto={eliminarProyecto}
-              seleccionarProyecto={setProyectoSeleccionado}
             />
           </Grid>
         ))
@@ -175,8 +171,6 @@ const ListaProyectos = () => {
         </Grid>
       )}
     </Grid>
-
-      {proyectoSeleccionado && (<DetalleProyecto proyecto={proyectoSeleccionado}/>)}
 
     {ultimaActualizacion && (<RegistroActividad mensaje={ultimaActualizacion}/>)}
 

@@ -6,9 +6,11 @@ import {
   Button,
   Chip
 } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 const ProyectoCard = ({ proyecto, eliminarProyecto, seleccionarProyecto }) => {
 
+  const navigate = useNavigate();
   const { título, categoría, estado, id } = proyecto;
 
   const confirmarEliminacion = () => {
@@ -19,6 +21,10 @@ const ProyectoCard = ({ proyecto, eliminarProyecto, seleccionarProyecto }) => {
     if (confirmado) {
       eliminarProyecto(id);
     }
+  };
+
+  const handleVerDetalle = () => {
+    navigate(`/proyectos/${id}`);
   };
 
   return (
@@ -49,7 +55,7 @@ const ProyectoCard = ({ proyecto, eliminarProyecto, seleccionarProyecto }) => {
 
         <Button
           variant="outlined"
-          onClick={() => seleccionarProyecto(proyecto)}
+          onClick={handleVerDetalle}
         >
           Ver detalle
         </Button>

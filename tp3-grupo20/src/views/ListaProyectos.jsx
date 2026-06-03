@@ -1,9 +1,9 @@
 import { useState, useEffect, useRef } from 'react'
 import { Container, Grid } from '@mui/material'
-import ProyectoCard from './ProyectoCard'
+import ProyectoCard from '../components/ProyectoCard'
 import proyectoService from '../services/proyectoService'
-import FormularioProyecto from './FormularioProyecto'
-import RegistroActividad from './RegistroActividad'
+import FormularioProyecto from '../components/FormularioProyecto'
+import RegistroActividad from '../components/RegistroActividad'
 
 
 const ListaProyectos = () => {
@@ -147,36 +147,34 @@ const ListaProyectos = () => {
 
       <h2 className="titulo-formulario">Agregar Proyecto</h2>
 
-      <div className="formulario-card">
         <FormularioProyecto
           onAgregarProyecto={agregarProyecto}
         />
-      </div>
 
       <p className="total-proyectos">Total de proyectos: {proyectosDisponibles.length}</p>
 
-    <Grid container spacing={3}>
-      {proyectosDisponibles.length > 0 ? (
-        proyectosDisponibles.map((proyecto) => (
-          <Grid item xs={12} sm={6} md={4} key={proyecto.id}>
-            <ProyectoCard
-              proyecto={proyecto}
-              eliminarProyecto={eliminarProyecto}
-            />
+      <Grid container spacing={3}>
+        {proyectosDisponibles.length > 0 ? (
+          proyectosDisponibles.map((proyecto) => (
+            <Grid xs={12} sm={6} md={4} key={proyecto.id}>
+              <ProyectoCard
+                proyecto={proyecto}
+                eliminarProyecto={eliminarProyecto}
+              />
+            </Grid>
+          ))
+        ) : (
+          <Grid xs={12}>
+            <p>No se encontraron proyectos.</p>
           </Grid>
-        ))
-      ) : (
-        <Grid item xs={12}>
-          <p>No se encontraron proyectos.</p>
-        </Grid>
-      )}
-    </Grid>
+        )}
+      </Grid>
 
-    {ultimaActualizacion && (<RegistroActividad mensaje={ultimaActualizacion}/>)}
+      {ultimaActualizacion && (<RegistroActividad mensaje={ultimaActualizacion}/>)}
 
-        </main>
-      </Container>
-    )
+    </main>
+  </Container>
+  )
 }
 
 export default ListaProyectos

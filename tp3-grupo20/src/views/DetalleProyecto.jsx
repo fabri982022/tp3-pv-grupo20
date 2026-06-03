@@ -77,23 +77,24 @@ export default function DetalleProyecto() {
             ))}
           </div>
         </section>
-
-        {/* Botón de Volver */}
-        <Box sx={{ mt: 4, display: 'flex', gap: 2 }}>
-          <Button 
-            variant="contained" 
-            onClick={() => navigate('/proyectos')}
-          >
-            Volver a Proyectos
-          </Button>
-          <Button 
-            variant="outlined" 
-            onClick={() => navigate('/')}
-          >
-            Ir al Inicio
-          </Button>
-        </Box>
       </article>
+
+      {/* Botones */}
+      <Box sx={{ mt: 4, display: 'flex', gap: 2 }}>
+        <Button 
+          variant="contained" 
+          onClick={() => navigate('/proyectos')}
+        >
+          Volver a Proyectos
+        </Button>
+        <Button 
+          variant="contained" 
+          onClick={() => navigate('/')}
+        >
+          Ir al Inicio
+        </Button>
+      </Box>
+
     </Container>
   );
 }

@@ -40,21 +40,21 @@ const ProyectoCard = ({ proyecto, eliminarProyecto, seleccionarProyecto }) => {
           <strong>Categoría:</strong> {categoría}
         </Typography>
 
-        <Typography variant="body1">
+        <Typography variant="body1" component="div">
           <strong>Estado:</strong>
+          <Chip
+            label={estado}
+            size="small"
+            sx={{ml: 1}}
+          />
         </Typography>
-
-        <Chip
-          label={estado}
-          size="small"
-        />
 
       </CardContent>
 
       <CardActions>
 
         <Button
-          variant="outlined"
+          variant="contained"
           onClick={handleVerDetalle}
         >
           Ver detalle

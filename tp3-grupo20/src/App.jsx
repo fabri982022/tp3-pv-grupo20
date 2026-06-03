@@ -1,31 +1,8 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import Header from './components/Header'
-import Footer from './components/Footer'
-import Nav from './components/Nav'
-import Dashboard from './components/Dashboard'
-import ListaProyectos from './components/ListaProyectos'
-import DetalleProyecto from './components/DetalleProyecto'
-import PerfilUsuario from './components/PerfilUsuario'
+import { RouterProvider } from 'react-router-dom';
+import { router } from './routes/routes';
 
-function App() {
-  return (
-    <Router>
-      <Header />
-      <Nav />
-      
-      <main>
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/proyectos" element={<ListaProyectos />} />
-          <Route path="/proyectos/:id" element={<DetalleProyecto />} />
-          <Route path="/perfil" element={<PerfilUsuario />} />
-        </Routes>
-      </main>
-
-      <Footer />
-    </Router>
-  )
+function App () {
+  return <RouterProvider router={router} />;
 }
 
-export default App
+export default App;

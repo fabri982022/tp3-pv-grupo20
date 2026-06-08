@@ -1,8 +1,10 @@
+import { useUsuario } from '../hook/useUsuario'
 import { NavLink, Link } from 'react-router-dom'
-import { Box, AppBar, Toolbar, Typography } from '@mui/material'
+import { Box, AppBar, Toolbar, Typography, Button } from '@mui/material'
 import logoUnju from '../assets/logo-fi-unju-institucional.png'
 
 export default function Nav() {
+  const { usuario, cerrarSesion } = useUsuario()
   return (
     <AppBar position="static" sx={{ bgcolor: '#1a3a5a', mb: 2 }}>
       <Toolbar>
@@ -31,7 +33,7 @@ export default function Nav() {
           </Typography>
         </Box>
 
-        <Box component="nav" sx={{ display: 'flex', gap: 3 }}>
+        <Box component="nav" sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
           <NavLink 
             to="/" 
             style={({ isActive }) => ({
@@ -70,6 +72,39 @@ export default function Nav() {
           >
             Mi Perfil
           </NavLink>
+          {usuario && (
+            <Box
+              sx={{
+                ml: 'auto',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 2
+              }}
+            >
+              <Typography
+                variant="body2"
+                sx={{
+                  color: 'white',
+                  fontWeight: 'bold'
+                }}
+              >
+                {usuario.nombre} ({usuario.rol})
+              </Typography>
+
+              <Button
+                color="inherit"
+                variant="outlined"
+                size="small"
+                onClick={cerrarSesion}
+                sx={{
+                  borderColor: 'white',
+                  color: 'white'
+                }}
+              >
+                Cerrar Sesión
+              </Button>
+            </Box>
+          )}
         </Box>
       </Toolbar>
     </AppBar>

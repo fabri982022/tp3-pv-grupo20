@@ -173,20 +173,6 @@ export default function Dashboard() {
           >
             Mi Perfil
           </Button>
-          
-          <Button 
-            variant="contained" 
-            color="error" 
-            size="large"
-            onClick={ ()=>
-              {cerrarSesion()
-              setDniInput('');     // 2. Limpia el campo de Usuario
-              setPasswordInput(''); // 3. Limpia el campo de Contraseña
-            }
-          }
-          >  
-            Cerrar Sesion
-          </Button>
 
         </Box>
 

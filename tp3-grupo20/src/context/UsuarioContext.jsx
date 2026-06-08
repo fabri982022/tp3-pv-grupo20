@@ -7,7 +7,12 @@ export const UsuarioContext = createContext(null);
 export const UsuarioProvider = ({ children }) => {
   
   // Cargamos el estado usando el servicio simulado
-  const [usuario, setUsuario] = useState( null);
+  const [usuario, setUsuario] = useState({
+  nombre: 'Juan Pérez',
+  dni: '12345678',
+  rol: 'Alumno',
+  institucion: 'Universidad Nacional'
+  });
   const guardarSesion= (usuario) => setUsuario(usuario);
   const cerrarSesion= () => setUsuario(null);
 

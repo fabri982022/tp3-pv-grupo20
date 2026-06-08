@@ -1,22 +1,50 @@
 import React, { useState } from 'react';
 import { Container, Box, Typography, Button, Grid, TextField } from '@mui/material';
 import { Link } from 'react-router-dom';
+//agrego
+import { useUsuario } from '../hook/useUsuario';
+import usuarioService from '../services/usuarioService';
 
 export default function Dashboard() {
-  // Verificacion de usuario
-  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('user'));
-  const [usuario, setUsuario] = useState('');
+  
+  const { usuario, guardarSesion, cerrarSesion } = useUsuario();
+  const [dniInput, setDniInput] = useState('');
+  const [passwordInput, setPasswordInput] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleLoginSubmit = (e) => {
     e.preventDefault();
-    // Guardado
-    localStorage.setItem('user', usuario || 'Invitado');
-    // Actualizacion del estado
-    setIsLoggedIn(true);
-  };
+    setErrorMsg('');
+    setLoading(true); //Empezamos a cargar
+    
 
-  // No esta logeado
-  if (!isLoggedIn) {
+    usuarioService.login(dniInput, passwordInput)
+      .then((datosUsuario) => {
+        guardarSesion(datosUsuario); // Inyecta los datos reales en el contexto
+      })
+      .catch((error) => {
+        setErrorMsg(error.message); // Muestra el error si ponen cualquier clave
+      })
+
+      .finally(() => {
+        setLoading(false); // 🔥 ¡NUEVO! Apagamos el loading al terminar la promesa
+      });
+
+  };
+  if (loading) {
+    return (
+      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '80vh' }}>
+        <Typography variant="h5" sx={{ color: '#0e71eb', fontWeight: 'bold' }}>
+          Iniciando sesión, por favor espere...
+        </Typography>
+      </Box>
+    );
+  }
+
+  
+  if (!usuario){
+ 
     return (
       <Grid container sx={{ minHeight: '80vh' }}>
         
@@ -68,8 +96,10 @@ export default function Dashboard() {
                 label="Usuario" 
                 fullWidth 
                 sx={{ mb: 2 }} 
-                value={usuario}
-                onChange={(e) => setUsuario(e.target.value)}
+                //value={usuario}
+                value={dniInput}
+                //onChange={(e) => setUsuario(e.target.value)}
+                onChange={(e) => setDniInput(e.target.value)}
                 variant="outlined"
                 required
               />
@@ -78,10 +108,12 @@ export default function Dashboard() {
                 type="password" 
                 fullWidth 
                 sx={{ mb: 3 }} 
+                value={passwordInput}
+                onChange={(e) => setPasswordInput(e.target.value)}
                 variant="outlined"
                 required
               />
-              
+              {errorMsg && <Typography variant="body2" color="error" sx={{ mb: 2 }}>{errorMsg}</Typography>}
               <Button 
                 type="submit" 
                 variant="contained" 
@@ -114,7 +146,11 @@ export default function Dashboard() {
         
         {/* Personalizacion del subtítulo con el nombre guardado */}
         <Typography variant="h6" color="textSecondary" sx={{ mb: 4 }}>
-          Hola, <strong>{localStorage.getItem('user')}</strong>. Administra y colabora en proyectos educativos de forma efectiva.
+          
+          {/*Hola, <strong>{localStorage.getItem('user')}</strong>. Administra y colabora en proyectos educativos de forma efectiva.
+           */}   
+          Hola, {usuario?.nombre} ({usuario?.rol})
+        
         </Typography>
 
         <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', flexWrap: 'wrap' }}>
@@ -142,12 +178,14 @@ export default function Dashboard() {
             variant="contained" 
             color="error" 
             size="large"
-            onClick={() => {
-            localStorage.removeItem('user'); // Borra el usuario simulado
-            window.location.reload();       // Recarga la página para volver al Login
-            }}
+            onClick={ ()=>
+              {cerrarSesion()
+              setDniInput('');     // 2. Limpia el campo de Usuario
+              setPasswordInput(''); // 3. Limpia el campo de Contraseña
+            }
+          }
           >  
-            Cerrar Sesión
+            Cerrar Sesion
           </Button>
 
         </Box>

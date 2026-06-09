@@ -114,7 +114,7 @@ const FormularioProyecto = ({ onAgregarProyecto }) => {
       <TextField
         fullWidth
         multiline
-        rows={5}
+        rows={1}
         label="Descripción"
         name="descripcion"
         value={nuevoProyecto.descripcion}
@@ -124,12 +124,13 @@ const FormularioProyecto = ({ onAgregarProyecto }) => {
 
 
       {/* Recursos y enlaces */}
+
     <Paper sx={{ p: 3, mb: 3 }}>
       <Typography variant="h6" gutterBottom>
         Recursos Asociados
       </Typography>
 
-      <div className="grid-tres-columnas">
+      <div className="grid-una-columna">
 
         <TextField
           fullWidth
@@ -183,6 +184,8 @@ const FormularioProyecto = ({ onAgregarProyecto }) => {
 
       </div>
     </Paper>
+
+  
 
 
       {/* Botón de envío */}

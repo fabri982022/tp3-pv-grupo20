@@ -134,7 +134,16 @@ const ListaProyectos = () => {
     <main>
       <h1 className="proyectos-disponibles">Listado de Proyectos</h1>
 
-      <h2 className="titulo-buscador">Buscador de Proyectos</h2>
+
+    <div className="layout-proyectos">
+
+      <div className="columna-formulario">
+          <h2 className="titulo-formulario">Agregar Proyecto</h2>
+          <FormularioProyecto onAgregarProyecto={agregarProyecto} />
+      </div>
+
+      <div className="columna-proyectos">
+        <h2 className="titulo-buscador">Buscador de Proyectos</h2>
 
         <div className="buscador-group">
           <input
@@ -144,31 +153,29 @@ const ListaProyectos = () => {
             onChange={manejarBusqueda}
           />
         </div>  
+        <p className="total-proyectos">
+          Total de proyectos: {proyectosDisponibles.length}
+        </p>
 
-      <h2 className="titulo-formulario">Agregar Proyecto</h2>
-
-        <FormularioProyecto
-          onAgregarProyecto={agregarProyecto}
-        />
-
-      <p className="total-proyectos">Total de proyectos: {proyectosDisponibles.length}</p>
-
-      <Grid container spacing={3}>
-        {proyectosDisponibles.length > 0 ? (
-          proyectosDisponibles.map((proyecto) => (
-            <Grid xs={12} sm={6} md={4} key={proyecto.id}>
-              <ProyectoCard
-                proyecto={proyecto}
-                eliminarProyecto={eliminarProyecto}
-              />
+        <Grid container spacing={3}>
+          {proyectosDisponibles.length > 0 ? (
+            proyectosDisponibles.map((proyecto) => (
+              <Grid item xs={12} sm={6} key={proyecto.id}>
+                <ProyectoCard
+                  proyecto={proyecto}
+                  eliminarProyecto={eliminarProyecto}
+                />
+              </Grid>
+            ))
+          ) : (
+            <Grid item xs={12}>
+              <p>No se encontraron proyectos.</p>
             </Grid>
-          ))
-        ) : (
-          <Grid xs={12}>
-            <p>No se encontraron proyectos.</p>
-          </Grid>
-        )}
-      </Grid>
+          )}
+        </Grid>
+      </div>
+
+    </div>
 
       {ultimaActualizacion && (<RegistroActividad mensaje={ultimaActualizacion}/>)}
 

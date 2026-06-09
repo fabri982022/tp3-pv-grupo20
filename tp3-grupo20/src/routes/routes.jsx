@@ -1,3 +1,4 @@
+import RutasProtegidas from '../components/RutasProtegidas';
 import { createBrowserRouter, Outlet } from 'react-router-dom';
 import Dashboard from '../views/Dashboard';
 import ListaProyectos from '../views/ListaProyectos';
@@ -36,16 +37,24 @@ export const router = createBrowserRouter([
         element: <Dashboard />
       },
       {
-        path: "proyectos",
-        element: <ListaProyectos />
-      },
+      path: "proyectos",
+      element: (
+        <RutasProtegidas>
+          <ListaProyectos />
+        </RutasProtegidas>
+      )
+     },
       {
         path: "proyectos/:id",
         element: <DetalleProyecto />
       },
       {
         path: "perfil",
-        element: <PerfilUsuario />
+        element: (
+          <RutasProtegidas>
+            <PerfilUsuario />
+          </RutasProtegidas>
+        )
       }
     ]
   }

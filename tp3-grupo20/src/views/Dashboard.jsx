@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 //agrego
 import { useUsuario } from '../hook/useUsuario';
 import usuarioService from '../services/usuarioService';
-
+import '../css/dashboard.css';
+import proyectoService from '../services/proyectoService';
 export default function Dashboard() {
   
   const { usuario, guardarSesion, cerrarSesion } = useUsuario();
@@ -127,7 +128,7 @@ export default function Dashboard() {
                   textTransform: 'none'
                 }}
               >
-                Sign In
+                Iniciar Sesion
               </Button>
             </form>
           </Box>
@@ -135,68 +136,107 @@ export default function Dashboard() {
       </Grid>
     );
   }
+const proyectos = proyectoService.obtenerProyectos()
+  .filter(p => p.disponible);
 
+const totalProyectos = proyectos.length;
+
+const proyectosActivos = proyectos.filter(
+  p => p.estado === "En Progreso"
+).length;
+
+const proyectosCompletados = proyectos.filter(
+  p => p.estado === "Completado"
+).length;
+
+const proyectosPendientes = proyectos.filter(
+  p => p.estado === "Pendiente"
+).length;
   // Esta logeado
   return (
-    <Container maxWidth="md" sx={{ py: 4 }}>
-      <Box sx={{ textAlign: 'center', my: 8 }}>
-        <Typography variant="h3" component="h1" gutterBottom sx={{ fontWeight: 'bold', mb: 2 }}>
-          Bienvenido a la Plataforma de Gestión de Proyectos
-        </Typography>
-        
-        {/* Personalizacion del subtítulo con el nombre guardado */}
-        <Typography variant="h6" color="textSecondary" sx={{ mb: 4 }}>
-          
-          {/*Hola, <strong>{localStorage.getItem('user')}</strong>. Administra y colabora en proyectos educativos de forma efectiva.
-           */}   
-          Hola, {usuario?.nombre} ({usuario?.rol})
-        
-        </Typography>
+  <Container maxWidth="lg" className="dashboard-container">
 
-        <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center', flexWrap: 'wrap' }}>
-          <Button 
-            variant="contained" 
-            color="primary" 
-            size="large"
-            component={Link}
-            to="/proyectos"
-          >
-            Ver Proyectos
-          </Button>
-          
-          <Button 
-            variant="contained" 
-            color="primary" 
-            size="large"
-            component={Link}
-            to="/perfil"
-          >
-            Mi Perfil
-          </Button>
-          
-          <Button 
-            variant="contained" 
-            color="error" 
-            size="large"
-            onClick={ ()=>
-              {cerrarSesion()
-              setDniInput('');     // 2. Limpia el campo de Usuario
-              setPasswordInput(''); // 3. Limpia el campo de Contraseña
-            }
-          }
-          >  
-            Cerrar Sesion
-          </Button>
+    <Box className="dashboard-bienvenida">
+      <Typography variant="h4" className="dashboard-titulo">
+        👋 Bienvenido {usuario?.nombre} 
+      </Typography>
 
-        </Box>
+      <Typography variant="h6">
+        {usuario?.rol} • {usuario?.institucion}
+      </Typography>
 
-        <Box sx={{ mt: 6, p: 3, bgcolor: '#f5f5f5', borderRadius: 2 }}>
-          <Typography variant="body1">
-            Desde aquí puedes gestionar tus proyectos, visualizar detalles, 
-            editar tu perfil y mantener un registro de todas las actividades.
+      <Typography className="dashboard-subtitulo">
+        Gestiona y supervisa tus proyectos educativos desde esta plataforma.
+      </Typography>
+    </Box>
+
+    <Typography variant="h4" className="dashboard-seccion">
+      📊 Resumen General
+    </Typography>
+
+    <Grid  container spacing={3} className="dashboard-estadisticas">
+      <Grid item xs={12} sm={6} md={3}>
+        <Box className="dashboard-card">
+          <Typography variant="h3" className="dashboard-numero">
+            {totalProyectos}
+          </Typography>
+
+          <Typography>
+            Total Proyectos
           </Typography>
         </Box>
-      </Box>
-    </Container>
-  );
+      </Grid>
+
+      <Grid item xs={12} sm={6} md={3}>
+        <Box className="dashboard-card">
+          <Typography variant="h3" className="dashboard-numero">
+            {proyectosActivos}
+          </Typography>
+
+          <Typography>
+            Activos
+          </Typography>
+        </Box>
+      </Grid>
+
+      <Grid item xs={12} sm={6} md={3}>
+        <Box className="dashboard-card">
+          <Typography variant="h3" className="dashboard-numero">
+            {proyectosPendientes}
+          </Typography>
+
+          <Typography>
+            Pendientes
+          </Typography>
+        </Box>
+      </Grid>
+
+      <Grid item xs={12} sm={6} md={3}>
+        <Box className="dashboard-card">
+          <Typography variant="h3" className="dashboard-numero">
+            {proyectosCompletados}
+          </Typography>
+
+          <Typography>
+            Completados
+          </Typography>
+        </Box>
+      </Grid>
+
+    </Grid>
+
+    <Box className="dashboard-info">
+      <Typography variant="h5" gutterBottom>
+        Información de la Plataforma
+      </Typography>
+
+      <Typography>
+        Desde aquí podrás gestionar proyectos educativos,
+        realizar seguimiento de actividades, consultar información
+        académica y colaborar con otros integrantes de la comunidad universitaria.
+      </Typography>
+    </Box>
+
+  </Container>
+);
 }

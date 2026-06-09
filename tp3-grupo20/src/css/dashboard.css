@@ -1,0 +1,55 @@
+.dashboard-container {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.dashboard-bienvenida {
+  background: linear-gradient(135deg, #1a3a5a, #2c5d8a);
+  color: white;
+  padding: 2rem;
+  border-radius: 16px;
+  margin-bottom: 2rem;
+}
+
+.dashboard-titulo {
+  font-weight: bold;
+}
+
+.dashboard-subtitulo {
+  margin-top: 1rem;
+}
+
+.dashboard-seccion {
+  margin-bottom: 1.5rem;
+  font-weight: bold;
+}
+
+.dashboard-card {
+  background-color: white;
+  padding: 1.5rem;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  min-width: 200px;
+}
+.dashboard-card:hover {
+  transform: translateY(-5px);
+  transition: 0.3s;
+}
+
+.dashboard-numero {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #1a3a5a;
+}
+
+.dashboard-info {
+  margin-top: 2rem;
+  background-color: #f5f5f5;
+  padding: 2rem;
+  border-radius: 16px;
+}
+.dashboard-estadisticas {
+  justify-content: center;
+  margin-bottom: 2rem;
+}

@@ -42,6 +42,10 @@ header {
     color: var(--color-blanco);
     padding: 1.5rem 2rem;
     background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .header-content {
@@ -160,8 +164,7 @@ header {
 }
 
 .card-proyecto:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+  transform: translateY(-6px);
 }
 
 .card-proyecto h2 {
@@ -253,9 +256,12 @@ header {
     flex-direction: row;
     flex-wrap: wrap;
     gap: 15px;
+
+    max-width: 700px;  
     width: 100%;
+    margin: 0 auto 30px;
+
     padding: 20px;
-    margin-bottom: auto;
     background: var(--color-blanco);
     border-radius: 14px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.08);
@@ -333,10 +339,10 @@ header {
 /* FORMULARIO */
 .titulo-formulario {
     color: var(--color-primario);
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     margin-top: 1rem;
     font-weight: 700;
-    text-align: center;
+    text-align: left;
 }
 
 /* Contenedor principal en formato Tarjeta */
@@ -348,8 +354,7 @@ header {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  max-width: 900px;
-  margin: 0 auto 32px auto;
+  width: 100%;
 }
 
 /* Estilos para las sub-secciones */
@@ -391,28 +396,6 @@ header {
   font-size: 0.95rem;
 }
 
-/* Inputs estilizados 
-.formulario-card input, 
-.formulario-card select {
-  padding: 12px;
-  border: 1px solid #cbd5e1;
-  border-radius: 6px;
-  font-size: 0.95rem;
-  width: 100%;
-  box-sizing: border-box;
-} */
-
-
-
-/* Foco de interacción limpio 
-.formulario-card input:focus,
-.formulario-card select:focus,
-.formulario-card textarea:focus {
-  outline: none;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
-}
-*/
 
 /* Área inferior del botón de Guardado */
 .form-acciones {
@@ -681,4 +664,26 @@ footer p {
 .form-paper {
   padding: 24px;
   margin-bottom: 24px;
+}
+
+
+.layout-proyectos{
+  display:flex;
+  gap:30px;
+  align-items:flex-start;
+}
+
+
+.columna-formulario{
+  flex:0 0 50%;
+}
+
+.columna-proyectos{
+  flex:0 0 50%;
+}
+
+.grid-una-columna{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
 }

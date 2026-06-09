@@ -28,10 +28,8 @@ const ProyectoCard = ({ proyecto, eliminarProyecto, seleccionarProyecto }) => {
   };
 
   return (
-    <Card className="card-proyecto">
-
+    <Card className="card-proyecto" sx={{height: "100%",display: "flex",flexDirection: "column",justifyContent: "space-between"}}>
       <CardContent>
-
         <Typography variant="h5" gutterBottom>
           {título}
         </Typography>
@@ -42,34 +40,26 @@ const ProyectoCard = ({ proyecto, eliminarProyecto, seleccionarProyecto }) => {
 
         <Typography variant="body1" component="div">
           <strong>Estado:</strong>
-          <Chip
-            label={estado}
-            size="small"
-            sx={{ml: 1}}
-          />
+          <Chip label={estado} size="small" color={
+              estado === "Completado"
+                ? "success"
+                : estado === "En Progreso"
+                ? "warning"
+                : "error"
+            }
+          sx={{ ml: 1 }}/>
         </Typography>
-
       </CardContent>
 
       <CardActions>
-
-        <Button
-          variant="contained"
-          onClick={handleVerDetalle}
-        >
+        <Button variant="contained" onClick={handleVerDetalle}>
           Ver detalle
         </Button>
 
-        <Button
-          variant="contained"
-          color="error"
-          onClick={confirmarEliminacion}
-        >
+        <Button variant="contained"color="error"onClick={confirmarEliminacion}>
           Eliminar
         </Button>
-
       </CardActions>
-
     </Card>
   );
 };

@@ -3,7 +3,7 @@ import { NavLink, Link } from 'react-router-dom'
 import { Box, AppBar, Toolbar, Typography, Button } from '@mui/material'
 import logoUnju from '../assets/logo-fi-unju-institucional.png'
 
-export default function Nav() {
+const Nav = () => {
   const { usuario, cerrarSesion } = useUsuario()
   return (
     <AppBar position="sticky" sx={{ bgcolor: '#1a3a5a', mb: 2 }}>
@@ -46,3 +46,5 @@ export default function Nav() {
     </AppBar>
   )
 }
+
+export default Nav;

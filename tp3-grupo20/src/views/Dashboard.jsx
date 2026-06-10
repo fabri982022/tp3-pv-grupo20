@@ -6,7 +6,8 @@ import { useUsuario } from '../hook/useUsuario';
 import usuarioService from '../services/usuarioService';
 import '../css/dashboard.css';
 import proyectoService from '../services/proyectoService';
-export default function Dashboard() {
+
+const Dashboard = () => {
   
   const { usuario, guardarSesion, cerrarSesion } = useUsuario();
   const [dniInput, setDniInput] = useState('');
@@ -29,7 +30,7 @@ export default function Dashboard() {
       })
 
       .finally(() => {
-        setLoading(false); // 🔥 ¡NUEVO! Apagamos el loading al terminar la promesa
+        setLoading(false); // Apagamos el loading al terminar la promesa
       });
 
   };
@@ -43,7 +44,7 @@ export default function Dashboard() {
     );
   }
 
-  
+  // No logeado
   if (!usuario){
  
     return (
@@ -136,6 +137,7 @@ export default function Dashboard() {
       </Grid>
     );
   }
+
 const proyectos = proyectoService.obtenerProyectos()
   .filter(p => p.disponible);
 
@@ -152,6 +154,7 @@ const proyectosCompletados = proyectos.filter(
 const proyectosPendientes = proyectos.filter(
   p => p.estado === "Pendiente"
 ).length;
+
   // Esta logeado
   return (
   <Container maxWidth="lg" className="dashboard-container">
@@ -174,8 +177,8 @@ const proyectosPendientes = proyectos.filter(
       📊 Resumen General
     </Typography>
 
-    <Grid  container spacing={3} className="dashboard-estadisticas">
-      <Grid item xs={12} sm={6} md={3}>
+    <Grid container spacing={3} className="dashboard-estadisticas">
+      <Grid xs={12} sm={6} md={3}>
         <Box className="dashboard-card">
           <Typography variant="h3" className="dashboard-numero">
             {totalProyectos}
@@ -187,7 +190,7 @@ const proyectosPendientes = proyectos.filter(
         </Box>
       </Grid>
 
-      <Grid item xs={12} sm={6} md={3}>
+      <Grid xs={12} sm={6} md={3}>
         <Box className="dashboard-card">
           <Typography variant="h3" className="dashboard-numero">
             {proyectosActivos}
@@ -199,7 +202,7 @@ const proyectosPendientes = proyectos.filter(
         </Box>
       </Grid>
 
-      <Grid item xs={12} sm={6} md={3}>
+      <Grid xs={12} sm={6} md={3}>
         <Box className="dashboard-card">
           <Typography variant="h3" className="dashboard-numero">
             {proyectosPendientes}
@@ -211,7 +214,7 @@ const proyectosPendientes = proyectos.filter(
         </Box>
       </Grid>
 
-      <Grid item xs={12} sm={6} md={3}>
+      <Grid xs={12} sm={6} md={3}>
         <Box className="dashboard-card">
           <Typography variant="h3" className="dashboard-numero">
             {proyectosCompletados}
@@ -240,3 +243,5 @@ const proyectosPendientes = proyectos.filter(
   </Container>
 );
 }
+
+export default Dashboard;

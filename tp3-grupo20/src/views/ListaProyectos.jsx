@@ -160,7 +160,7 @@ const ListaProyectos = () => {
         <Grid container spacing={3}>
           {proyectosDisponibles.length > 0 ? (
             proyectosDisponibles.map((proyecto) => (
-              <Grid item xs={12} sm={6} key={proyecto.id}>
+              <Grid xs={12} sm={6} key={proyecto.id}>
                 <ProyectoCard
                   proyecto={proyecto}
                   eliminarProyecto={eliminarProyecto}

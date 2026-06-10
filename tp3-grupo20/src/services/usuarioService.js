@@ -2,8 +2,8 @@ const usuarioService= ( ()=>{
  
     //bd simulada
  const usuariosRegistrados = [
-  { nombre: "Juan Pérez", dni: "12345678", rol: "Alumno", institucion: "Universidad Nacional", password: "1234" },
-  { nombre: "María Sosa", dni: "11223344", rol: "Docente", institucion: "Universidad Nacional", password: "profesora2026" }
+  { nombre: "Juan Pérez", dni: "12345678", rol: "Alumno", institucion: "Universidad Nacional de Jujuy", password: "1234" },
+  { nombre: "María Sosa", dni: "11223344", rol: "Docente", institucion: "Universidad Nacional de Jujuy", password: "profesora2026" }
 ];
 
 //buscar usuario por DNI y contraseña
